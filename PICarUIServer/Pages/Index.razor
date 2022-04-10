@@ -1,0 +1,85 @@
+﻿@page "/"
+
+<h1>PICar UI</h1>
+
+<div class="row">
+    <div class="col">
+
+        @if (ImageSrc != null)
+        {
+            String img64 = Convert.ToBase64String(ImageSrc);
+            String img64Url = string.Format("data:image/jpeg;base64,{0}", img64); //imagetype can be e.g. gif, jpeg, png etc.
+            <img src="@img64Url" style="width:1240px; height:720px" class=" img-fluid" />
+            <label>Image Size : @ImageSize</label>
+        }
+
+
+        @*<iframe width="560" height="315" src="http://raspberrypi:8000/index.html" frameborder="0" allowfullscreen></iframe>*@
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <button type="button" @onclick="(()=>GetImage())">Get Image</button>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class=col-6>
+        <div class="row">
+            <div class="col">
+                <button type="button" @onmousedown="(()=>MoveForward())" @onmouseup="(()=>Stop())">Forward</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" @onmousedown="(()=>TurnLeft())"  @onmouseup="(()=>Stop())">Left</button>
+                <button type="button" @onmousedown="(()=>TurnRight())" @onmouseup="(()=>Stop())">Right</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" @onmousedown="(()=>MoveBack())" @onmouseup="(()=>Stop())">Back</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col">
+        <label>@Distance</label>
+    </div>
+    <div class="col">
+        <button type="button" @onclick="(()=>GetDistance())">Get Distance </button>
+    </div>
+</div>
+
+
+<br />
+<div class="row">
+    <div class="col-1">
+        <button @onclick="(()=>SonicServoLeft())">Sonic L</button>
+    </div>
+    <div class="col-1">
+        <button @onclick="(()=>SonicServoForward())">Sonic F</button>
+    </div>
+    <div class="col-1">
+        <button @onclick="(()=>SonicServoRight())">Sonic R</button>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-1">
+
+        <button @onclick="(()=>ToggleLightsR())" style="background-color:@(RGBROn==true?"red":"white")">Lights R</button>
+    </div>
+    <div class="col-1">
+        <button @onclick="(()=>ToggleLightsG())" style="background-color:@(RGBGOn==true?"green":"white")">Lights G</button>
+    </div>
+    <div class="col-1">
+        <button @onclick="(()=>ToggleLightsB())" style="background-color:@(RGBBOn==true?"blue":"white")">Lights B</button>
+    </div>
+</div>
+
