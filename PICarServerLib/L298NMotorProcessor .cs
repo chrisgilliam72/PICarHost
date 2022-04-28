@@ -13,10 +13,10 @@ namespace PICarServerLib
     {
         public int IN1 { get; set; }
         public int IN2 { get; set; }
-        public int EN { get; set; }
+
 
         private PwmChannel _hrdwPWMChannel;
-        private SoftwarePwmChannel _pinENSpeed;
+        //private SoftwarePwmChannel _pinENSpeed;
         private GpioController _gpioController;
         private double _speed = 0.5;
 
@@ -25,12 +25,12 @@ namespace PICarServerLib
           
             _gpioController = gpioController;
             _hrdwPWMChannel=PwmChannel.Create(0, 0);
-            _pinENSpeed = new SoftwarePwmChannel(EN);
+            //_pinENSpeed = new SoftwarePwmChannel(EN);
         }
 
         public void Dispose()
         {
-            _pinENSpeed.Stop();
+
             _hrdwPWMChannel.Start();
             _gpioController.ClosePin(IN1);
             _gpioController.ClosePin(IN2);

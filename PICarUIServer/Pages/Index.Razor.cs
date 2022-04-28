@@ -73,14 +73,20 @@ namespace PICarUIServer.Pages
 
         protected override void OnInitialized()
         {
+            try
+            {
+                //cam = MMALCamera.Instance;
+                //MMALCameraConfig.StillResolution = MMALSharp.Common.Utility.Resolution.As03MPixel;
+                raspberryPibrd = new RaspberryPiBoard();
+                gpioController = raspberryPibrd.CreateGpioController();
+                ultraborg = CreateUltraBorgInstance();
+                motorProcessor = new MotorProcessor();
+                motorProcessor.Init(gpioController);
+            }
+            catch (Exception ex)
+            {
 
-            //cam = MMALCamera.Instance;
-            //MMALCameraConfig.StillResolution = MMALSharp.Common.Utility.Resolution.As03MPixel;
-            raspberryPibrd = new RaspberryPiBoard();
-            gpioController = raspberryPibrd.CreateGpioController();
-            ultraborg = CreateUltraBorgInstance();
-            motorProcessor = new MotorProcessor();
-            motorProcessor.Init(gpioController);
+            }
 
         }
    
@@ -200,6 +206,26 @@ namespace PICarUIServer.Pages
 
         
         }
+
+        public async Task CameraUp()
+        {
+
+        }
+        public async Task CameraDown()
+        {
+
+        }
+
+        public async Task CameraLeft()
+        {
+
+        }
+
+        public async Task CameraRight()
+        {
+
+        }
+
         public async Task GetImage()
         {
            

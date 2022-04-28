@@ -9,7 +9,6 @@ Console.WriteLine("Pin Numbering Scheme:+"+raspberryPibrd.DefaultPinNumberingSch
 var motorCntrller = new L298NMotorProcessor(controller);
 motorCntrller.IN1 = 23;
 motorCntrller.IN2 = 24;
-motorCntrller.EN = 9;
 motorCntrller.Init();
 while (true)
 {

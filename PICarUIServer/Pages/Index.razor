@@ -3,7 +3,7 @@
 <h1>PICar UI</h1>
 
 <div class="row">
-    <div class="col">
+    <div class="col-4">
 
         @if (ImageSrc != null)
         {
@@ -16,6 +16,26 @@
 
         @*<iframe width="560" height="315" src="http://raspberrypi:8000/index.html" frameborder="0" allowfullscreen></iframe>*@
     </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-4 text-center mb-2">
+                <button type="button" class="btn-servocntrl" @onclick="(()=>CameraUp())">Up</button>
+            </div>
+        </div>
+        <div class=row>
+            <div class="col-2 text-center">
+                <button type="button" class="btn-servocntrl" @onclick="(()=>CameraUp())">Left</button>
+            </div>
+            <div class="col-2 text-center">
+                <button type="button" class="btn-servocntrl" @onclick="(()=>CameraRight())">Right</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-center mt-2">
+                <button type="button" class="btn-servocntrl" @onclick="(()=>CameraDown())">Down</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row">
     <div class="col">
@@ -26,20 +46,22 @@
 <div class="row">
     <div class=col-6>
         <div class="row">
-            <div class="col">
-                <button type="button" @onmousedown="(()=>MoveForward())" @onmouseup="(()=>Stop())">Forward</button>
+            <div class="col-4 text-center mb-2">
+                <button class="btn-servocntrl" type="button" @onmousedown="(()=>MoveForward())" @onmouseup="(()=>Stop())">Forward</button>
             </div>
 
         </div>
         <div class="row">
-            <div class="col">
-                <button type="button" @onmousedown="(()=>TurnLeft())"  @onmouseup="(()=>Stop())">Left</button>
-                <button type="button" @onmousedown="(()=>TurnRight())" @onmouseup="(()=>Stop())">Right</button>
+            <div class="col-2">
+                <button class="btn-servocntrl" type="button" @onmousedown="(()=>TurnLeft())" @onmouseup="(()=>Stop())">Left</button>
+            </div>
+            <div class=col-2>
+                <button class="btn-servocntrl" type="button" @onmousedown="(()=>TurnRight())" @onmouseup="(()=>Stop())">Right</button>
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <button type="button" @onmousedown="(()=>MoveBack())" @onmouseup="(()=>Stop())">Back</button>
+            <div class="col-4  text-center mt-2">
+                <button class="btn-servocntrl" type="button" @onmousedown="(()=>MoveBack())" @onmouseup="(()=>Stop())">Back</button>
             </div>
 
         </div>
@@ -60,26 +82,26 @@
 <br />
 <div class="row">
     <div class="col-1">
-        <button @onclick="(()=>SonicServoLeft())">Sonic L</button>
+        <button class="btn-servocntrl" @onclick="(()=>SonicServoLeft())">Sonic L</button>
     </div>
     <div class="col-1">
-        <button @onclick="(()=>SonicServoForward())">Sonic F</button>
+        <button class="btn-servocntrl" @onclick="(()=>SonicServoForward())">Sonic F</button>
     </div>
     <div class="col-1">
-        <button @onclick="(()=>SonicServoRight())">Sonic R</button>
+        <button class="btn-servocntrl" @onclick="(()=>SonicServoRight())">Sonic R</button>
     </div>
 </div>
 <br />
 <div class="row">
     <div class="col-1">
 
-        <button @onclick="(()=>ToggleLightsR())" style="background-color:@(RGBROn==true?"red":"white")">Lights R</button>
+        <button class="btn-servocntrl" @onclick="(()=>ToggleLightsR())" style="background-color:@(RGBROn==true?"red":"white")">Lights R</button>
     </div>
     <div class="col-1">
-        <button @onclick="(()=>ToggleLightsG())" style="background-color:@(RGBGOn==true?"green":"white")">Lights G</button>
+        <button class="btn-servocntrl" @onclick="(()=>ToggleLightsG())" style="background-color:@(RGBGOn==true?"green":"white")">Lights G</button>
     </div>
     <div class="col-1">
-        <button @onclick="(()=>ToggleLightsB())" style="background-color:@(RGBBOn==true?"blue":"white")">Lights B</button>
+        <button class="btn-servocntrl" @onclick="(()=>ToggleLightsB())" style="background-color:@(RGBBOn==true?"blue":"white")">Lights B</button>
     </div>
 </div>
 
