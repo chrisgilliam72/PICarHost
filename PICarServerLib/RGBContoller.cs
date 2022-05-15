@@ -115,12 +115,13 @@ namespace PICarHost
 
         public void LightsOn()
         {
-
+            Console.WriteLine("Lights on");
             LoggingProcessor.AddTrace("Start LightsOn");
             LightsRed(true);
             LightsGreen(true);
             LightsBlue(true);
             LoggingProcessor.AddTrace("End LightsOn");
+            Console.WriteLine("End Lights on");
         }
 
         public void LightsOff()
@@ -131,6 +132,7 @@ namespace PICarHost
             LightsGreen(false);
             LightsBlue(false);
             LoggingProcessor.AddTrace("End LightsOff");
+            Console.WriteLine("End Lights off");
         }
     }
 }

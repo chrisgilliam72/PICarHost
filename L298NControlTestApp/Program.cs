@@ -6,21 +6,23 @@ using PICarServerLib;
 var raspberryPibrd = new RaspberryPiBoard();
 var controller = raspberryPibrd.CreateGpioController();
 Console.WriteLine("Pin Numbering Scheme:+"+raspberryPibrd.DefaultPinNumberingScheme);
-var motorCntrller = new L298NMotorProcessor(controller);
-motorCntrller.IN1 = 23;
-motorCntrller.IN2 = 24;
-motorCntrller.Init();
+var motorCntrller = new L298NMotorProcessor(controller,23,24,8,7);
+
+Console.WriteLine($"Controller  IN1= {motorCntrller.IN1} In2={motorCntrller.IN2} PWN Left= {motorCntrller.PWMLChannel}");
+Console.WriteLine($"Controller  IN3= {motorCntrller.IN3} In4={motorCntrller.IN4} PWN Right= {motorCntrller.PWMRChannel}");
+motorCntrller.Init(); 
+
 while (true)
 {
+    var speedFactor = motorCntrller.SpeedFactor;
     var key = Console.ReadKey();
     switch (key.KeyChar)
     {
-        case '1':Console.WriteLine("faster");motorCntrller.Faster();break;
-        case '2':Console.WriteLine("slower");motorCntrller.Slower();break;       
-        case 'f': Console.WriteLine("Forward"); motorCntrller.Forward(); break;
-        case 'b': Console.WriteLine("Backwards");motorCntrller.Back(); break;
-        case 's': Console.WriteLine("Stop"); motorCntrller.Stop();break;
-        case 'u':motorCntrller.Status();break;
-        case 'x': Environment.Exit(0);break ;
+        case '1':Console.WriteLine("faster"); motorCntrller.UpdateSpeedFactor(speedFactor - 0.1); break;
+        case '2':Console.WriteLine("slower"); motorCntrller.UpdateSpeedFactor(speedFactor+0.1); break;       
+        case 'f': Console.WriteLine("Forward"); motorCntrller.StartForward(); ; break;
+        case 'b': Console.WriteLine("Backwards"); motorCntrller.StartBackwards(); break;
+        case 's': Console.WriteLine("Stop"); motorCntrller.Stop(); break;
+        case 'x': motorCntrller.CleanUp(); Environment.Exit(0);break ;
     }
 }

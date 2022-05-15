@@ -9,87 +9,89 @@ using System.Threading.Tasks;
 
 namespace PICarServerLib
 {
-    public class L298NMotorProcessor : IDisposable
+    public class L298NMotorController
     {
         public int IN1 { get; set; }
         public int IN2 { get; set; }
 
 
         private PwmChannel _hrdwPWMChannel;
-        //private SoftwarePwmChannel _pinENSpeed;
+
         private GpioController _gpioController;
         private double _speed = 0.5;
 
-        public L298NMotorProcessor(GpioController gpioController)
+        public int PWMChannel { get; init; }
+        public double DutyCycle
+        {
+            get
+            {
+                return _hrdwPWMChannel.DutyCycle;
+            }
+        }
+        public L298NMotorController(GpioController gpioController, int pwmChannel)
         {
           
             _gpioController = gpioController;
-            _hrdwPWMChannel=PwmChannel.Create(0, 0);
-            //_pinENSpeed = new SoftwarePwmChannel(EN);
+            _hrdwPWMChannel = PwmChannel.Create(0, pwmChannel);
+            PWMChannel = pwmChannel;
+
+
         }
 
-        public void Dispose()
+        public L298NMotorController(GpioController gpioController, int pwmChannel, int in1, int in2)
         {
 
-            _hrdwPWMChannel.Start();
+            _gpioController = gpioController;
+            _hrdwPWMChannel = PwmChannel.Create(0, pwmChannel);
+            PWMChannel = pwmChannel;
+            IN1=in1;
+            IN2=in2;
+        }
+
+        public void CleanUp()
+        {
+
+            _hrdwPWMChannel.Stop();
             _gpioController.ClosePin(IN1);
             _gpioController.ClosePin(IN2);
         }
 
+
         public void Init()
         {
 
-            //_pinENSpeed.Start();
+            _hrdwPWMChannel.DutyCycle = 0.5;
+            _speed = 0.5;
             _hrdwPWMChannel.Start();
             _gpioController.OpenPin(IN1, PinMode.Output);
             _gpioController.OpenPin(IN2, PinMode.Output);
         }
 
-        public void Faster()
+        public void UpdateSpeed(double speedFactor)
         {
-            if (_speed<1.0)
-            {
-                _hrdwPWMChannel.DutyCycle = _speed + 0.1;
-                _speed = _speed + 0.1;
-            }
-
+            _hrdwPWMChannel.DutyCycle = speedFactor;
+            _speed = speedFactor;
         }
 
-        public void Slower()
-        {
-            if (_speed >0)
-            {
-                _hrdwPWMChannel.DutyCycle = _speed - 0.1;
-                _speed = _speed - 0.1;
-            }
-        }
         public void Stop()
         {
             _gpioController.Write(IN1, PinValue.Low);
             _gpioController.Write(IN2, PinValue.Low);
         }
 
-        public void Forward()
+        public void StartForward()
         {
-            Console.WriteLine("Speed: "+_speed);
-            Console.WriteLine(IN1 + "High "+ IN2 + "Low");
             _gpioController.Write(IN1, PinValue.High);
             _gpioController.Write(IN2, PinValue.Low);
         }
 
 
-        public void Back()
+        public void StartBack()
         {
-            Console.WriteLine("Speed: " + _speed);
-            Console.WriteLine(IN1 + "Low "+ IN2 + "High");
             _gpioController.Write(IN1, PinValue.Low);
             _gpioController.Write(IN2, PinValue.High);
         }
 
-        public void Status()
-        {
-           Console.WriteLine("IN1 :"+ _gpioController.Read(IN1));
-           Console.WriteLine("IN2 :" + _gpioController.Read(IN2));
-        }
+
     }
 }
