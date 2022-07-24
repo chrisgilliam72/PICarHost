@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Iot.Device.Board;
+using System;
 using System.Collections.Generic;
 using System.Device.I2c;
 using System.Text;
@@ -75,7 +76,37 @@ namespace PICarHost
 
         }
 
+        public int GetUltraBorgAdress()
+        {
+            var raspberryPibrd = new RaspberryPiBoard();
+            var controller = raspberryPibrd.CreateGpioController();
 
+            int busNo = raspberryPibrd.GetDefaultI2cBusNumber();
+            var ic2Bus = I2cBus.Create(busNo);
+            var busItems = I2cBusExtensions.PerformBusScan(ic2Bus);
+
+            foreach (var busItem in busItems)
+            {
+                byte[] recBuffer = new byte[4];
+                var deviceItem = ic2Bus.CreateDevice(busItem);
+                try
+                {
+
+                    deviceItem.WriteByte(0x99);
+                    deviceItem.Read(recBuffer);
+
+                    if (recBuffer[1] == I2C_ID_SERVO_USM)
+                        return busItem;
+                       
+                }
+                catch
+                {
+             
+                }            
+            }
+
+            return -1;
+        }
 
         private void WriteCommand(byte command, int commandValue)
         {

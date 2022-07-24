@@ -3,28 +3,35 @@ using Iot.Device.Board;
 using PICarHost;
 using System.Device.I2c;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Ultraborg Distance sensor test app");
 
 var raspberryPibrd = new RaspberryPiBoard();
 var controller = raspberryPibrd.CreateGpioController();
 
 int busNo = raspberryPibrd.GetDefaultI2cBusNumber();
 Console.WriteLine("Bus No:" + busNo);
-var ic2Bus = I2cBus.Create(busNo);
-var busItems = I2cBusExtensions.PerformBusScan(ic2Bus);
 
-var ultraborg = new Ultraborg();
-ultraborg.Init(busNo, busItems[0]);
-
-while (true)
+var ultraborg = new Ultraborg(
+Console.WriteLine("Scanning for Ultraborg address...");
+int address = ultraborg.GetUltraBorgAdress();
+if (address!=-1)
 {
-    var keyInfo = Console.ReadKey();
-    switch (keyInfo.KeyChar)
+    Console.WriteLine($"UltraBorg found on address {address}");
+    ultraborg.Init(busNo, address);
+
+    while (true)
     {
+        var keyInfo = Console.ReadKey();
+        switch (keyInfo.KeyChar)
+        {
 
-        case 'd': var distance = ultraborg.GetFilteredDistance(1); Console.WriteLine($"Filtered Distance: {distance}"); break;
-        case 'u': var unfiltDistance = ultraborg.GetDistance(1); ; Console.WriteLine($"Unfiltered Distance: {unfiltDistance}"); break;
-        case 'x': Environment.Exit(0); break;
+            case 'd': var distance = ultraborg.GetFilteredDistance(1); Console.WriteLine($"Filtered Distance: {distance}"); break;
+            case 'u': var unfiltDistance = ultraborg.GetDistance(1); ; Console.WriteLine($"Unfiltered Distance: {unfiltDistance}"); break;
+            case 'x': Environment.Exit(0); break;
 
+        }
     }
 }
+
+Console.WriteLine("No UltraBorg detected");
+Console.ReadLine();
