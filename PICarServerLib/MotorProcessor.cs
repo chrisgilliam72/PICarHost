@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Device.Pwm.Drivers;
 using System.Device.Gpio;
 
-namespace PICarHost.Server
+namespace PICarServerLib
 {
     public class MotorProcessor
     {

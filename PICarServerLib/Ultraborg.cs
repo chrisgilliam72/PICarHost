@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PICarHost
+namespace PICarServerLib
 {
     public class Ultraborg
     {
@@ -66,6 +66,7 @@ namespace PICarHost
         public Ultraborg()
         {
         }
+
 
         public bool Init(int bus, int Address )
         {

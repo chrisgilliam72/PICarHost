@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Iot.Device.Board;
-using PICarHost;
+using PICarServerLib;
 using System.Device.I2c;
 
 Console.WriteLine("Ultraborg Distance sensor test app");
@@ -11,7 +11,7 @@ var controller = raspberryPibrd.CreateGpioController();
 int busNo = raspberryPibrd.GetDefaultI2cBusNumber();
 Console.WriteLine("Bus No:" + busNo);
 
-var ultraborg = new Ultraborg(
+var ultraborg = new Ultraborg();
 Console.WriteLine("Scanning for Ultraborg address...");
 int address = ultraborg.GetUltraBorgAdress();
 if (address!=-1)

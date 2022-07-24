@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace PICarHost
+namespace PICarServerLib
 {
    public  class SonicSensorController
     {

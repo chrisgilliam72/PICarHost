@@ -2,8 +2,7 @@
 using MMALSharp;
 using MMALSharp.Common;
 using MMALSharp.Handlers;
-using PICarHost;
-using PICarHost.Server;
+using PICarServerLib;
 using System;
 using System.Collections.Generic;
 using System.Device.Gpio;
@@ -21,11 +20,12 @@ namespace PICarUIServer.Pages
         public int ImageSize { get; set; }
 
         public double Distance { get; set; }
+        public double FrontDistance { get; set; }
 
         private RaspberryPiBoard raspberryPibrd;
         private GpioController gpioController;
         private Ultraborg ultraborg;
-        private MotorProcessor motorProcessor;
+        private L298NMotorProcessor motorProcessor;
         private bool RGBROn { get; set; }
 
         private bool RGBGOn { get; set; }
@@ -80,8 +80,8 @@ namespace PICarUIServer.Pages
                 raspberryPibrd = new RaspberryPiBoard();
                 gpioController = raspberryPibrd.CreateGpioController();
                 ultraborg = CreateUltraBorgInstance();
-                motorProcessor = new MotorProcessor();
-                motorProcessor.Init(gpioController);
+                motorProcessor = new L298NMotorProcessor(gpioController, 23, 24, 8, 7);
+                motorProcessor.Init();
             }
             catch (Exception ex)
             {
@@ -184,6 +184,14 @@ namespace PICarUIServer.Pages
 
             Console.WriteLine(Distance);
             StateHasChanged();
+        }
+
+        public void TestAutoPilot()
+        {
+            Console.Write("Start Autopilot");
+            var autoPilot = new AutoPilot(ultraborg,motorProcessor);
+            autoPilot.GoUntil(100,1);
+            Console.Write("End Autopilot");
         }
 
         public async Task GetVideo()
