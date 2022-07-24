@@ -1,5 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-//pushed to git dffdfd
 using Iot.Device.Board;
 using System.Device.I2c;
 
