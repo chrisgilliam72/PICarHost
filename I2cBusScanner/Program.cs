@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+//test for git.
 using Iot.Device.Board;
 using System.Device.I2c;
 
