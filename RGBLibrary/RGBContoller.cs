@@ -19,23 +19,20 @@ namespace PICarServerLib
         const int PING = 27;
     
 
-
-        private UltraborgServo Servo { get; set; }
-        private GpioController gpioCntrller { get; set; }
+        private GpioController? gpioCntrller { get; set; }
 
 
         public RGBContoller()
         {
            
-            Servo = new UltraborgServo(2,0);
+
         }
 
-        public void Init(Ultraborg ultraborg, GpioController gpio)
+        public void Init( GpioController gpio)
         {
             try
             {
                 gpioCntrller = gpio;
-                Servo.Init(ultraborg);
                 gpioCntrller.OpenPin(PINR, PinMode.Output);
                 gpioCntrller.OpenPin(PING, PinMode.Output);
                 gpioCntrller.OpenPin(PINB, PinMode.Output);
@@ -81,7 +78,6 @@ namespace PICarServerLib
                 LightsOff();
                 mre.Wait(TimeSpan.FromMilliseconds(500));
                 Console.WriteLine("Testing Servo");
-                Servo.Test();
                 Console.WriteLine("Testing complete");
             }
 
@@ -116,22 +112,22 @@ namespace PICarServerLib
         public void LightsOn()
         {
             Console.WriteLine("Lights on");
-            LoggingProcessor.AddTrace("Start LightsOn");
+            //LoggingProcessor.AddTrace("Start LightsOn");
             LightsRed(true);
             LightsGreen(true);
             LightsBlue(true);
-            LoggingProcessor.AddTrace("End LightsOn");
+            //LoggingProcessor.AddTrace("End LightsOn");
             Console.WriteLine("End Lights on");
         }
 
         public void LightsOff()
         {
             Console.WriteLine("Lights off");
-            LoggingProcessor.AddTrace("Start LightsOff");
+            //LoggingProcessor.AddTrace("Start LightsOff");
             LightsRed(false);
             LightsGreen(false);
             LightsBlue(false);
-            LoggingProcessor.AddTrace("End LightsOff");
+            //LoggingProcessor.AddTrace("End LightsOff");
             Console.WriteLine("End Lights off");
         }
     }

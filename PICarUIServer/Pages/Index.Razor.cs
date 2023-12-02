@@ -80,12 +80,12 @@ namespace PICarUIServer.Pages
                 raspberryPibrd = new RaspberryPiBoard();
                 gpioController = raspberryPibrd.CreateGpioController();
                 ultraborg = CreateUltraBorgInstance();
-                motorProcessor = new L298NMotorProcessor(gpioController, 23, 24, 8, 7);
+                motorProcessor = new L298NMotorProcessor(gpioController, 23, 24, 9, 10);
                 motorProcessor.Init();
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("Exception " + ex.Message);
             }
 
         }

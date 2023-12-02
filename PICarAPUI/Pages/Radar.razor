@@ -1,0 +1,86 @@
+﻿@page "/"
+
+<PageTitle>PI Car UI Radar</PageTitle>
+<div class="container" style="background-color:greenyellow">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">PI Car UI Radar</h1>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-success" style="width:100px" @onclick="(()=>Go())">Go</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-danger" style="width:100px" @onclick="(()=>Stop())">Stop</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-7" style="background-color:lightblue">
+                <div class="row">
+                    <div style="background-image: url('/Images/radar-background.png');background-repeat: no-repeat;width:800px; height:700px">
+                        <div class="row">
+                            <div class="row mt-5">
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col" style="width:50px">
+                                    <h5 class="text-center text-white">@TopDistance1</h5>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col" style="width:50px">
+                                    <h5 class="text-center text-white">@TopDistance2</h5>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col" style="width:50px">
+                                    <h5 class="text-center text-white">@TopDistance3</h5>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col" style="width:50px">
+                                            <h5 class="text-center text-white">@LDistance1</h5>
+                                        </div>
+                                        <div class="col" style="width:50px">
+                                            <h5 class="text-center text-white">@LDistance2</h5>
+                                        </div>
+                                        <div class="col" style="width:50px">
+                                            <h5 class="text-center text-white">@LDistance3</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6" >
+                                    <div class="row">
+
+                                        <div class="col-1" style="width:75px">
+                                            <h5 class="text-center text-white">@RDistance1</h5>
+                                        </div>
+                                        <div class="col-1" style="width:100px">
+                                            <h5 class="text-center text-white">@RDistance2</h5>
+                                        </div>
+                                        <div class="co1" style="width:10px">
+                                            <h5 class="text-center text-white">@RDistance3</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -84,22 +84,22 @@ namespace PICarServerLib
             if (speedFactor <= 1)
             {
                 Console.WriteLine("updating speed factor :" + speedFactor);
-                LoggingProcessor.AddTrace("updating speed factor :" + speedFactor);
+                //LoggingProcessor.AddTrace("updating speed factor :" + speedFactor);
                 this.SpeedFactor = speedFactor;
                 _leftController.UpdateSpeed(speedFactor);
                 _rightController.UpdateSpeed(speedFactor);
                 Console.WriteLine("speed factor updated");
-                LoggingProcessor.AddTrace("speed factor updated");
+                //LoggingProcessor.AddTrace("speed factor updated");
             }
             else
                 Console.WriteLine("speed factor out of range");
-                LoggingProcessor.AddTrace("speed factor out of range");  
+                //LoggingProcessor.AddTrace("speed factor out of range");  
         }
 
         public void StartForward()
         {
             Console.WriteLine("Start Forward");
-            LoggingProcessor.AddTrace("Start Forward");
+            //LoggingProcessor.AddTrace("Start Forward");
             _leftController.StartForward();
             _rightController.StartForward();
         }
@@ -107,7 +107,7 @@ namespace PICarServerLib
         public void StartBackwards()
         {
             Console.WriteLine("Start Backwards");
-            LoggingProcessor.AddTrace("Start Backwards");
+            //LoggingProcessor.AddTrace("Start Backwards");
             _leftController.StartBack();
             _rightController.StartBack();
         }
@@ -115,7 +115,7 @@ namespace PICarServerLib
         public void StartTurnLeft()
         {
             Console.WriteLine("Start Turn Left");
-            LoggingProcessor.AddTrace("Start Turn Left");
+            //LoggingProcessor.AddTrace("Start Turn Left");
             _rightController.Stop();
             _leftController.StartForward();
 
@@ -124,7 +124,7 @@ namespace PICarServerLib
         public void StartTurnRight()
         {
             Console.WriteLine("Start Turn Right");
-            LoggingProcessor.AddTrace("Start Turn Right");
+            //LoggingProcessor.AddTrace("Start Turn Right");
             _leftController.Stop();
             _rightController.StartForward();
         }
@@ -132,7 +132,7 @@ namespace PICarServerLib
         public void Stop()
         {
             Console.WriteLine("Stop");
-            LoggingProcessor.AddTrace("Stop");
+            //LoggingProcessor.AddTrace("Stop");
             _leftController.Stop();
             _rightController.Stop();
         }

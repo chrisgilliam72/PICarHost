@@ -11,12 +11,19 @@ namespace PICarServerLib
     {
         private readonly Ultraborg _ultraBorg;
         private readonly L298NMotorProcessor _l298NMotorController;
+        private bool _stop;
         public AutoPilot(Ultraborg ultraBorg, L298NMotorProcessor l298NMotorController)
         {
             _ultraBorg=ultraBorg;
             _l298NMotorController=l298NMotorController;
+            _stop=false;
         }
-
+        
+        public void Reset()
+        {
+            _l298NMotorController.Stop();
+            _stop=true;
+        }
         public void GoUntil(double distance, int frontSensorNo)
         {
             try
@@ -37,8 +44,10 @@ namespace PICarServerLib
                     {
                         _l298NMotorController.Stop();
                         Console.WriteLine($"final distance {currDistance} ");
+                        return;
                     }
                         
+
                 }
 
             }

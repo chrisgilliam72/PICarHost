@@ -5,8 +5,9 @@ using System.Device.I2c;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Ultraborg.Library.Servo;
 
-namespace PICarServerLib
+namespace Ultraborg.Library
 {
     public class Ultraborg
     {

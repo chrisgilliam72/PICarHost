@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace PICarServerLib
+namespace Ultraborg.Library.Servo
 {
     public class UltraborgServo
     {

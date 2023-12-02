@@ -25,7 +25,8 @@ foreach (var busItem in busItems)
     var deviceItem = ic2Bus.CreateDevice(busItem);
     try
     {
-        Console.WriteLine($"Writting to device: {busItem}");
+
+        Console.WriteLine($"Writing to device: {busItem}");
         deviceItem.WriteByte(0x99);
         deviceItem.Read(recBuffer);
         Console.WriteLine($"Adress {busItem}: result : {recBuffer[1]}");

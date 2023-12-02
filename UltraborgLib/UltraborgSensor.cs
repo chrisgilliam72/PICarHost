@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PICarServerLib
+namespace Ultraborg.Library.Sensor
 {
     class UltraborgSensor
     {

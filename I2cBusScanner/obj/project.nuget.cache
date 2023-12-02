@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FUUDKp2ycGVO/qUP2w2c16hHUs3bJBkQ5UJXo2Y+aVa8Nv7Q63UotxlZ2HYepB8uzct9uYsMpTN+aSS2LmAFiA==",
+  "dgSpecHash": "9k2HbfL9GqITnnY9a7ONm2HxpXCrwY2PHbu6y+cw6Dh9wckftymTq6YbRIGVmtOfRkkzKmLcv2yAoJvOfjBmOg==",
   "success": true,
-  "projectFilePath": "D:\\projects\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
+  "projectFilePath": "C:\\Users\\chris\\Source\\projects\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chris\\.nuget\\packages\\iot.device.bindings\\2.1.0\\iot.device.bindings.2.1.0.nupkg.sha512",
     "C:\\Users\\chris\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
