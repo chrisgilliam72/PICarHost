@@ -10,6 +10,7 @@ using System.Device.I2c;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ultraborg.Library.Servo;
 
 namespace PICarUIServer.Pages
 {
@@ -24,7 +25,7 @@ namespace PICarUIServer.Pages
 
         private RaspberryPiBoard raspberryPibrd;
         private GpioController gpioController;
-        private Ultraborg ultraborg;
+        private Ultraborg.Library.Ultraborg ultraborg;
         private L298NMotorProcessor motorProcessor;
         private bool RGBROn { get; set; }
 
@@ -38,7 +39,7 @@ namespace PICarUIServer.Pages
             RGBBOn = false;
         }
 
-        private Ultraborg CreateUltraBorgInstance()
+        private Ultraborg.Library.Ultraborg CreateUltraBorgInstance()
         {
             int busNo = raspberryPibrd.GetDefaultI2cBusNumber();
             Console.WriteLine("Bus No:" + busNo);
@@ -46,7 +47,7 @@ namespace PICarUIServer.Pages
             var busItems = I2cBusExtensions.PerformBusScan(ic2Bus);
 
             Console.WriteLine(("No Bus items: " + busItems.Count));
-            var ultraborg = new Ultraborg();
+            var ultraborg = new Ultraborg.Library.Ultraborg();
             ultraborg.Init(busNo, busItems[0]);
             return ultraborg;
 
@@ -71,24 +72,24 @@ namespace PICarUIServer.Pages
             Console.WriteLine("New Pos " + ubServo.GetCurrentPosition());
         }
 
-        protected override void OnInitialized()
-        {
-            try
-            {
-                //cam = MMALCamera.Instance;
-                //MMALCameraConfig.StillResolution = MMALSharp.Common.Utility.Resolution.As03MPixel;
-                raspberryPibrd = new RaspberryPiBoard();
-                gpioController = raspberryPibrd.CreateGpioController();
-                ultraborg = CreateUltraBorgInstance();
-                motorProcessor = new L298NMotorProcessor(gpioController, 23, 24, 9, 10);
-                motorProcessor.Init();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception " + ex.Message);
-            }
+        //protected override void OnInitialized()
+        //{
+        //    try
+        //    {
+        //        //cam = MMALCamera.Instance;
+        //        //MMALCameraConfig.StillResolution = MMALSharp.Common.Utility.Resolution.As03MPixel;
+        //        raspberryPibrd = new RaspberryPiBoard();
+        //        gpioController = raspberryPibrd.CreateGpioController();
+        //        ultraborg = CreateUltraBorgInstance();
+        //        motorProcessor = new L298NMotorProcessor(gpioController, 23, 24, 9, 10);
+        //        motorProcessor.Init();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Exception " + ex.Message);
+        //    }
 
-        }
+        //}
    
         public void SonicServoRight()
         {
@@ -113,10 +114,9 @@ namespace PICarUIServer.Pages
             Console.WriteLine("Toggle Lights R");
             RGBROn = !RGBROn;
             var rgbCntrl = new RGBContoller();
-            rgbCntrl.Init(ultraborg, gpioController);
+            rgbCntrl.Init(gpioController);
             rgbCntrl.LightsRed(RGBROn);
             rgbCntrl.CloseAll();
-            StateHasChanged();
         }
 
         public void  ToggleLightsG()
@@ -124,10 +124,9 @@ namespace PICarUIServer.Pages
             Console.WriteLine("Toggle Lights G");
             RGBGOn = !RGBGOn;
             var rgbCntrl = new RGBContoller();
-            rgbCntrl.Init(ultraborg, gpioController);
+            rgbCntrl.Init(gpioController);
             rgbCntrl.LightsGreen(RGBGOn);
             rgbCntrl.CloseAll();
-            StateHasChanged();
         }
 
         public void ToggleLightsB()
@@ -135,10 +134,9 @@ namespace PICarUIServer.Pages
             Console.WriteLine("Toggle Lights B");
             RGBBOn = !RGBBOn;
             var rgbCntrl = new RGBContoller();
-            rgbCntrl.Init(ultraborg, gpioController);
+            rgbCntrl.Init(gpioController);
             rgbCntrl.LightsBlue(RGBBOn);
             rgbCntrl.CloseAll();
-            StateHasChanged();
         }
 
         public void TurnLeft()
@@ -178,12 +176,11 @@ namespace PICarUIServer.Pages
             }
     
 
-            var ultraborg = new Ultraborg();
+            var ultraborg = new Ultraborg.Library.Ultraborg();
             ultraborg.Init(busNo, busItems[0]);
             Distance = ultraborg.GetFilteredDistance(1);
 
             Console.WriteLine(Distance);
-            StateHasChanged();
         }
 
         public void TestAutoPilot()
@@ -246,10 +243,6 @@ namespace PICarUIServer.Pages
                 ImageSrc = captureHandler.WorkingData.ToArray();
                 ImageSize = ImageSrc.Length;
             }
-
-
-            // Only call when you no longer require the camera, i.e. on app shutdown.
-            StateHasChanged();
         }
     }
 }

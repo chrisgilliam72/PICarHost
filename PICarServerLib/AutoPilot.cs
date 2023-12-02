@@ -9,10 +9,10 @@ namespace PICarServerLib
 {
     public class AutoPilot
     {
-        private readonly Ultraborg _ultraBorg;
+        private readonly Ultraborg.Library.Ultraborg _ultraBorg;
         private readonly L298NMotorProcessor _l298NMotorController;
         private bool _stop;
-        public AutoPilot(Ultraborg ultraBorg, L298NMotorProcessor l298NMotorController)
+        public AutoPilot(Ultraborg.Library.Ultraborg ultraBorg, L298NMotorProcessor l298NMotorController)
         {
             _ultraBorg=ultraBorg;
             _l298NMotorController=l298NMotorController;

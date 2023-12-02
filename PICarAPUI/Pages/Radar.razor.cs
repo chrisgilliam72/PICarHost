@@ -2,6 +2,7 @@
 using PICarServerLib;
 using System.Device.Gpio;
 using System.Device.I2c;
+using Ultraborg.Library;
 namespace PICarAPUI.Pages
 {
     public partial class Radar
@@ -16,9 +17,8 @@ namespace PICarAPUI.Pages
         public String RDistance2 { get; set; }
         public String RDistance3 { get; set; }
 
-        private RaspberryPiBoard raspberryPibrd;
-        private GpioController gpioController;
-        private Ultraborg ultraborg;
+
+        private Ultraborg.Library.Ultraborg ultraborg;
         private L298NMotorProcessor motorProcessor;
 
         public Radar()
@@ -36,36 +36,32 @@ namespace PICarAPUI.Pages
 
 
 
-        private Ultraborg CreateUltraBorgInstance()
+        private Ultraborg.Library.Ultraborg CreateUltraBorgInstance()
         {
-            int busNo = raspberryPibrd.GetDefaultI2cBusNumber();
-            Console.WriteLine("Bus No:" + busNo);
-            var ic2Bus = I2cBus.Create(busNo);
-            var busItems = I2cBusExtensions.PerformBusScan(ic2Bus);
 
-            Console.WriteLine(("No Bus items: " + busItems.Count));
-            var ultraborg = new Ultraborg();
-            ultraborg.Init(busNo, busItems[0]);
+            var ultraborg = new Ultraborg.Library.Ultraborg();
+            int address = ultraborg.GetUltraBorgAdress();
+            ultraborg.Init(1, address);
             return ultraborg;
 
         }
-        protected override void OnInitialized()
-        {
-            try
-            {
-                raspberryPibrd = new RaspberryPiBoard();
-                gpioController = raspberryPibrd.CreateGpioController();
-                ultraborg = CreateUltraBorgInstance();
-                motorProcessor = new L298NMotorProcessor(gpioController, 23, 24, 20, 21);
-                motorProcessor.Init();
+        //protected override void OnInitialized()
+        //{
+        //    try
+        //    {
+        //        var raspberryPibrd = new RaspberryPiBoard();
+        //        var gpioController = raspberryPibrd.CreateGpioController();
+        //        ultraborg = CreateUltraBorgInstance();
+        //        motorProcessor = new L298NMotorProcessor(gpioController, 23, 24, 20, 21);
+        //        motorProcessor.Init();
 
-                base.OnInitialized();
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+        //        base.OnInitialized();
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //}
 
         public void Go()
         {

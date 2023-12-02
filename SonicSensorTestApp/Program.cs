@@ -11,7 +11,7 @@ var controller = raspberryPibrd.CreateGpioController();
 int busNo = raspberryPibrd.GetDefaultI2cBusNumber();
 Console.WriteLine("Bus No:" + busNo);
 
-var ultraborg = new Ultraborg();
+var ultraborg = new Ultraborg.Library.Ultraborg();
 Console.WriteLine("Scanning for Ultraborg address...");
 int address = ultraborg.GetUltraBorgAdress();
 if (address!=-1)

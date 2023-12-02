@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ultraborg.Library.Sensor
 {
-    class UltraborgSensor
+    public class UltraborgSensor
     {
         private int SensorNo { get; set; }
         private Ultraborg Ultraborg { get; set; }

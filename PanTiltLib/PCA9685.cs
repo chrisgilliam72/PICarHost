@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Device.I2c;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PanTiltHATTest
+namespace PanTiltHatLib
 {
 
     internal class PCA9685

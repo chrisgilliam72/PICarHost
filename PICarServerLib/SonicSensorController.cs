@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-
+using Ultraborg.Library.Servo;
+using Ultraborg.Library.Sensor;
 namespace PICarServerLib
 {
    public  class SonicSensorController
@@ -25,7 +25,7 @@ namespace PICarServerLib
         }
 
 
-        public void Init(Ultraborg ultraborg)
+        public void Init(Ultraborg.Library.Ultraborg ultraborg)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace PICarServerLib
         {
             String statusReturn = "";
             Debug.WriteLine("Sonic Sensor controller action:" + requestedAction);
-            LoggingProcessor.AddTrace("Sonic Sensor controller action:" + requestedAction);
+            //LoggingProcessor.AddTrace("Sonic Sensor controller action:" + requestedAction);
             switch (requestedAction)
             {
                 case "servoleft": ServoToLeft(); statusReturn= "OK";break;
@@ -61,7 +61,7 @@ namespace PICarServerLib
             }
 
             Debug.WriteLine("Sonic Sensor action completed");
-            LoggingProcessor.AddTrace("Sonic Sensor action completed");
+            //LoggingProcessor.AddTrace("Sonic Sensor action completed");
             return statusReturn; 
         }
 
@@ -86,7 +86,7 @@ namespace PICarServerLib
         {
             var distance = Sensor.GetDistance();
             Debug.WriteLine("Sonic Sensor controller measured distance : " + distance);
-            LoggingProcessor.AddTrace("Sonic Sensor controller measured distance: " + distance);
+            //LoggingProcessor.AddTrace("Sonic Sensor controller measured distance: " + distance);
             return distance;       
         }
 

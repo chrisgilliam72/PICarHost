@@ -38,14 +38,14 @@ namespace TestApp
             var ic2Bus = I2cBus.Create(busNo);
             var busItems = I2cBusExtensions.PerformBusScan(ic2Bus);
 
-            var ultraborg = new Ultraborg();
+            var ultraborg = new Ultraborg.Library.Ultraborg();
             ultraborg.Init(busNo, busItems[0]);
 
             var motorProc = new MotorProcessor();
             motorProc.Init(controller);
 
             var rgbController = new RGBContoller();
-            rgbController.Init(ultraborg,controller);
+            rgbController.Init(controller);
             rgbController.LightsOff();
 
             //cam = MMALCamera.Instance;
