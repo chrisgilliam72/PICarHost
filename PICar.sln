@@ -29,6 +29,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHatManualTest", "Pan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltLibrary", "PanTiltLib\PanTiltLibrary.csproj", "{02F47DF5-D209-40C1-802D-3BEC3676E67B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltWebAPI", "PanTiltWebAPI\PanTiltWebAPI.csproj", "{600B4450-61C8-41F2-86FE-B72D00A901FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PiCameraWebServer", "CameraWebAPI\PiCameraWebServer.csproj", "{132669BE-1077-4F10-B6E6-6BC51709BB3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebCamHTMLInterface", "WebCamHTMLInterface", "{DEB339A1-7648-48F8-BD37-37E546BA5C7B}"
+	ProjectSection(SolutionItems) = preProject
+		WebCamUI\index.html = WebCamUI\index.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +96,14 @@ Global
 		{02F47DF5-D209-40C1-802D-3BEC3676E67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02F47DF5-D209-40C1-802D-3BEC3676E67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02F47DF5-D209-40C1-802D-3BEC3676E67B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600B4450-61C8-41F2-86FE-B72D00A901FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600B4450-61C8-41F2-86FE-B72D00A901FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600B4450-61C8-41F2-86FE-B72D00A901FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600B4450-61C8-41F2-86FE-B72D00A901FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

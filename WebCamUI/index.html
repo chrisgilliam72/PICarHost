@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pan-Tilt HAT</title>
+	<!-- <link href="bootstrap.min.css" rel="stylesheet" media="screen">  -->
+
+
+	<style type="text/css">
+		button {
+			margin: 10px 15px 10px 15px;
+			width: 50px;
+			height: 50px;
+		}
+
+		input {
+			margin: 10px 15px 10px 15px;
+			width: 50px;
+			height: 50px;
+		}
+
+		.buttonImg {
+			width: 25px;
+			height: 25px;
+		}
+
+		.main {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.title {
+			width: 300px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			font-size: 20px;
+			color: white;
+			background-color: blue;
+			margin: auto;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		div img {
+			width: 400px;
+			height: 300px;
+			margin-top: 1rem;
+			margin-bottom: 2rem;
+		}
+
+		.table {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.controlgrid {
+			display: grid;
+			grid-template-columns: 33% 33% 33%;
+			grid-template-rows: 33% 33% 33%;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.split {
+			display: grid;
+			grid-template-columns: auto auto;
+			column-gap: 1rem;
+			align-items: start ;
+		}
+
+		.btn {
+			width: 60px;
+			height: 60px;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="container" class="main">
+		<div class="title"> Pan-Tilt HAT Web Control</div>
+		<div class="split">
+			<div>
+				<img src="http://pi3b/CamServer/Video">
+			</div>
+			<div class="table">
+				<h2>Servo Control</h2>
+				<div class="controlgrid">
+					<div></div>
+					<div>
+						<button id="btnUp" class="btn" onclick="btnUp()">
+							<img src="./images/UpArrow.png" class="buttonImg" />
+						</button>
+					</div>
+					<div></div>
+					<div>
+						<button id='btnLeft' class="btn" onclick="btnRight()">
+							<img src="./images/Leftarrow.png" class="buttonImg" />
+						</button>
+					</div>
+					<div></div>
+					<div><button id='btnRight' class="btn" onclick="btnLeft()">
+							<img src="./images/RightArrow.png" class="buttonImg" />
+						</button>
+					</div>
+					<div></div>
+					<div>
+						<button id='btnDown' class="btn" onclick="btnDown()">
+							<img src="./images/DownArrow.png" class="buttonImg" />
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- <input type="range" min="20" max="100", style="width:300px";> -->
+		</div>
+</body>
+
+</html>
+
+<script>
+	async function btnUp() {
+		await fetch('http://pi3b/PanTilt/up');
+	}
+
+	async function btnDown() {
+		await fetch('http://pi3b/PanTilt/down');
+	}
+
+	async function btnRight() {
+		await fetch('http://pi3b/PanTilt/Right');
+	}
+
+	async function btnLeft() {
+		await fetch('http://pi3b/PanTilt/Left');
+	}
+
+
+</script>
