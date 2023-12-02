@@ -47,8 +47,8 @@
 		}
 
 		div img {
-			width: 400px;
-			height: 300px;
+			width: 1024px;
+			height: 720px;
 			margin-top: 1rem;
 			margin-bottom: 2rem;
 		}
@@ -88,10 +88,10 @@
 
 <body>
 	<div id="container" class="main">
-		<div class="title"> Pan-Tilt HAT Web Control</div>
+		<div class="title"> PI Car Web Control</div>
 		<div class="split">
 			<div>
-				<img src="http://pi3b/CamServer/Video">
+				<img src="http://pi4b/CamServer/Video">
 			</div>
 			<div class="table">
 				<h2>Servo Control</h2>
@@ -129,19 +129,19 @@
 
 <script>
 	async function btnUp() {
-		await fetch('http://pi3b/PanTilt/up');
+		await fetch('http://pi4b/PanTilt/up');
 	}
 
 	async function btnDown() {
-		await fetch('http://pi3b/PanTilt/down');
+		await fetch('http://pi4b/PanTilt/down');
 	}
 
 	async function btnRight() {
-		await fetch('http://pi3b/PanTilt/Right');
+		await fetch('http://pi4b/PanTilt/Right');
 	}
 
 	async function btnLeft() {
-		await fetch('http://pi3b/PanTilt/Left');
+		await fetch('http://pi4b/PanTilt/Left');
 	}
 
 

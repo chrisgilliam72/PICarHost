@@ -22,6 +22,7 @@ public class Camera
         settings.Brightness=50;
         settings.ExposureType=ExposureType.Auto;
         settings.WhiteBalanceEffect=WhiteBalanceEffect.Auto;
+        settings.VerticalFlip=true;
         device = VideoDevice.Create(settings);
         device.ImageBufferPoolingEnabled = true;
     }
