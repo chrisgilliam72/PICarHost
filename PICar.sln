@@ -23,10 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L298NLibrary", "L298NLibrar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGBLibrary", "RGBLibrary\RGBLibrary.csproj", "{6E105546-325E-433E-B970-F430FCF36B1E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHATAutoTest", "PanTiltHATTest\PanTiltHATAutoTest.csproj", "{EE611CF0-CD5A-4FB2-97FB-BDD7C912891F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHatManualTest", "PanTiltTest\PanTiltHatManualTest.csproj", "{9E089798-E0F9-45CF-B691-4E3DFDFFB013}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltLibrary", "PanTiltLib\PanTiltLibrary.csproj", "{02F47DF5-D209-40C1-802D-3BEC3676E67B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltWebAPI", "PanTiltWebAPI\PanTiltWebAPI.csproj", "{600B4450-61C8-41F2-86FE-B72D00A901FF}"
@@ -37,6 +33,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebCamHTMLInterface", "WebC
 	ProjectSection(SolutionItems) = preProject
 		WebCamUI\index.html = WebCamUI\index.html
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltraborgWebAPI", "UltraborgWebAPI\UltraborgWebAPI.csproj", "{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHatManualTest", "PanTiltManualTest\PanTiltHatManualTest.csproj", "{D971353D-AF72-4ED5-B9C3-30BCB3F13EB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHATAutoTest", "PanTiltAutoTest\PanTiltHATAutoTest.csproj", "{EB9F1B13-7794-48D2-B516-7894D8CF533E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,14 +86,6 @@ Global
 		{6E105546-325E-433E-B970-F430FCF36B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E105546-325E-433E-B970-F430FCF36B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E105546-325E-433E-B970-F430FCF36B1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE611CF0-CD5A-4FB2-97FB-BDD7C912891F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE611CF0-CD5A-4FB2-97FB-BDD7C912891F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE611CF0-CD5A-4FB2-97FB-BDD7C912891F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE611CF0-CD5A-4FB2-97FB-BDD7C912891F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E089798-E0F9-45CF-B691-4E3DFDFFB013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E089798-E0F9-45CF-B691-4E3DFDFFB013}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E089798-E0F9-45CF-B691-4E3DFDFFB013}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E089798-E0F9-45CF-B691-4E3DFDFFB013}.Release|Any CPU.Build.0 = Release|Any CPU
 		{02F47DF5-D209-40C1-802D-3BEC3676E67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{02F47DF5-D209-40C1-802D-3BEC3676E67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02F47DF5-D209-40C1-802D-3BEC3676E67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -104,6 +98,18 @@ Global
 		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D971353D-AF72-4ED5-B9C3-30BCB3F13EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D971353D-AF72-4ED5-B9C3-30BCB3F13EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D971353D-AF72-4ED5-B9C3-30BCB3F13EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D971353D-AF72-4ED5-B9C3-30BCB3F13EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9F1B13-7794-48D2-B516-7894D8CF533E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9F1B13-7794-48D2-B516-7894D8CF533E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9F1B13-7794-48D2-B516-7894D8CF533E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9F1B13-7794-48D2-B516-7894D8CF533E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

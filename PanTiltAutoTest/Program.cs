@@ -2,13 +2,6 @@
 using PanTiltHATTest;
 using System.Device.I2c;
 
-
-
-
-
-
-
-
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Scanning bus ");
 var raspberryPibrd = new RaspberryPiBoard();
