@@ -69,8 +69,11 @@ namespace PICarServerLib
 
         public void UpdateSpeed(double speedFactor)
         {
-            _hrdwPWMChannel.DutyCycle = speedFactor;
-            _speed = speedFactor;
+            if (speedFactor>0 && speedFactor<=1.0)
+            {
+              _hrdwPWMChannel.DutyCycle = speedFactor;
+             _speed = speedFactor;              
+            }
         }
 
         public void Stop()

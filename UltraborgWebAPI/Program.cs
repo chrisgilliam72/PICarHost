@@ -35,5 +35,5 @@ app.MapGet("/Distance/{sensorNo}", (int sensorNo) =>
 
     return distance;
 }).WithName("GetDistance").WithOpenApi();
-app.Run();
+app.Run("http://localhost:8090");
 

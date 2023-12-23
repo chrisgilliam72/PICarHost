@@ -6,7 +6,7 @@ using PICarServerLib;
 var raspberryPibrd = new RaspberryPiBoard();
 var controller = raspberryPibrd.CreateGpioController();
 Console.WriteLine("Pin Numbering Scheme:+"+raspberryPibrd.DefaultPinNumberingScheme);
-var motorCntrller = new L298NMotorProcessor(controller,23,24,20,21);
+var motorCntrller = new L298NMotorProcessor(controller,21,20,1,7);
 
 Console.WriteLine($"Controller  IN1= {motorCntrller.IN1} In2={motorCntrller.IN2} PWN Left= {motorCntrller.PWMLChannel}");
 Console.WriteLine($"Controller  IN3= {motorCntrller.IN3} In4={motorCntrller.IN4} PWN Right= {motorCntrller.PWMRChannel}");
