@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PICarServerLib
+namespace L298NLibrary
 {
     public class L298NMotorController
     {

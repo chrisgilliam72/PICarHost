@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Iot.Device.Board;
 
-namespace PICarServerLib
+namespace L298NLibrary
 {
     public  class L298NMotorProcessor
     {
