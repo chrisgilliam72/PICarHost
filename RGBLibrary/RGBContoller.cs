@@ -33,9 +33,9 @@ namespace PICarServerLib
             try
             {
                 gpioCntrller = gpio;
-                gpioCntrller.OpenPin(PINR, PinMode.Output);
-                gpioCntrller.OpenPin(PING, PinMode.Output);
-                gpioCntrller.OpenPin(PINB, PinMode.Output);
+                gpioCntrller?.OpenPin(PINR, PinMode.Output);
+                gpioCntrller?.OpenPin(PING, PinMode.Output);
+                gpioCntrller?.OpenPin(PINB, PinMode.Output);
             }
 
             catch (Exception ex)
@@ -48,9 +48,9 @@ namespace PICarServerLib
 
         public void CloseAll()
         {
-            gpioCntrller.ClosePin(PINR);
-            gpioCntrller.ClosePin(PING);
-            gpioCntrller.ClosePin(PINB);
+            gpioCntrller?.ClosePin(PINR);
+            gpioCntrller?.ClosePin(PING);
+            gpioCntrller?.ClosePin(PINB);
         }
 
 
@@ -86,19 +86,19 @@ namespace PICarServerLib
         public void LightsRed(bool ledOn)
         {
             Console.WriteLine("Lights Red:"+ ledOn);
-            gpioCntrller.Write(PINR, ((ledOn) ? PinValue.High : PinValue.Low));
+            gpioCntrller?.Write(PINR, ((ledOn) ? PinValue.High : PinValue.Low));
         }
 
         public void LightsBlue(bool ledOn)
         {
             Console.WriteLine("Lights Blue:"+ ledOn);
-            gpioCntrller.Write(PINB, ((ledOn) ? PinValue.High : PinValue.Low));
+            gpioCntrller?.Write(PINB, ((ledOn) ? PinValue.High : PinValue.Low));
         }
 
         public void LightsGreen(bool ledOn)
         {
             Console.WriteLine("Lights Green:"+ ledOn);
-            gpioCntrller.Write(PING, ((ledOn) ? PinValue.High : PinValue.Low));
+            gpioCntrller?.Write(PING, ((ledOn) ? PinValue.High : PinValue.Low));
         }
 
         public void ToggleAllColors(bool ledOn)

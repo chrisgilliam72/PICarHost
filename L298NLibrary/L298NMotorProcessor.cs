@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Iot.Device.Board;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace L298NLibrary
 {
@@ -15,6 +16,7 @@ namespace L298NLibrary
         private L298NMotorController? _rightController;
         private RaspberryPiBoard _raspberryPiBoard;
         private GpioController? _gpioOController;
+        private readonly ILogger _logger;
         public double SpeedFactor { get; set; }
 
         public int IN1
@@ -63,8 +65,9 @@ namespace L298NLibrary
             }
         }
 
-        public L298NMotorProcessor(int IN1, int IN2, int IN3, int IN4)
+        public L298NMotorProcessor(int IN1, int IN2, int IN3, int IN4,ILogger logger)
         {
+            _logger=logger;
             _raspberryPiBoard = new RaspberryPiBoard();
             _gpioOController = _raspberryPiBoard?.CreateGpioController();
 
@@ -93,16 +96,16 @@ namespace L298NLibrary
         {
             if (speedFactor <= 1 && _leftController!=null && _rightController!=null)
             {
-                Console.WriteLine("updating speed factor :" + speedFactor);
+                _logger.LogTrace("updating speed factor :" + speedFactor);
                 //LoggingProcessor.AddTrace("updating speed factor :" + speedFactor);
                 this.SpeedFactor = speedFactor;
                 _leftController.UpdateSpeed(speedFactor);
                 _rightController.UpdateSpeed(speedFactor);
-                Console.WriteLine("speed factor updated");
+                 _logger.LogTrace("speed factor updated");
                 //LoggingProcessor.AddTrace("speed factor updated");
             }
             else
-                Console.WriteLine("speed factor out of range");
+                _logger.LogTrace("speed factor out of range");
                 //LoggingProcessor.AddTrace("speed factor out of range");  
         }
 
@@ -110,10 +113,10 @@ namespace L298NLibrary
         {            
             if (_leftController!=null && _rightController!=null)
             {
-                Console.WriteLine("Start Forward");
+                 _logger.LogTrace("Start Forward");
                 //LoggingProcessor.AddTrace("Start Forward");
-                _leftController.StartForward();
-                _rightController.StartForward();
+                _leftController.Forward();
+                _rightController.Forward();
             }
         }
 
@@ -121,10 +124,10 @@ namespace L298NLibrary
         {
             if (_leftController!=null && _rightController!=null)
             {
-                Console.WriteLine("Start Backwards");
+                 _logger.LogTrace("Start Backwards");
                 //LoggingProcessor.AddTrace("Start Backwards");
-                _leftController.StartBack();
-                _rightController.StartBack();
+                _leftController.Back();
+                _rightController.Back();
             }
 
         }
@@ -133,10 +136,10 @@ namespace L298NLibrary
         {    
             if (_leftController!=null && _rightController!=null)
             {
-                Console.WriteLine("Start Turn Left");
+                 _logger.LogTrace("Start Turn Left");
                 //LoggingProcessor.AddTrace("Start Turn Left");
                 _rightController.Stop();
-                _leftController.StartForward();
+                _leftController.Forward();
             }
         }
 
@@ -144,10 +147,10 @@ namespace L298NLibrary
         {
             if (_leftController!=null && _rightController!=null)
             {
-                Console.WriteLine("Start Turn Right");
+                 _logger.LogTrace("Start Turn Right");
                 //LoggingProcessor.AddTrace("Start Turn Right");
                 _leftController.Stop();
-                _rightController.StartForward();
+                _rightController.Forward();
             }
         }
 
@@ -155,7 +158,7 @@ namespace L298NLibrary
         {
             if (_leftController!=null && _rightController!=null)
             {
-                Console.WriteLine("Stop");
+                 _logger.LogTrace.WriteLine("Stop");
                 //LoggingProcessor.AddTrace("Stop");
                 _leftController.Stop();
                 _rightController.Stop();

@@ -82,14 +82,14 @@ namespace L298NLibrary
             _gpioController.Write(IN2, PinValue.Low);
         }
 
-        public void StartForward()
+        public void Forward()
         {
             _gpioController.Write(IN1, PinValue.High);
             _gpioController.Write(IN2, PinValue.Low);
         }
 
 
-        public void StartBack()
+        public void Back()
         {
             _gpioController.Write(IN1, PinValue.Low);
             _gpioController.Write(IN2, PinValue.High);
