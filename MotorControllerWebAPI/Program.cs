@@ -1,12 +1,9 @@
 
 using L298NLibrary;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
-
- var loggerFactory = builder.GetRequiredService<ILoggerFactory>();
-var motorCntrller = new L298NMotorProcessor(21,20,1,7);
-motorCntrller.InitControllers(); 
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -14,6 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+var logger= loggerFactory.CreateLogger("Motor Controller Web API");
+var motorCntrller = new L298NMotorProcessor(21,20,1,7,logger);
+motorCntrller.InitControllers(); 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

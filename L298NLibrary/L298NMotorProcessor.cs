@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Iot.Device.Board;
-using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging;
 
 namespace L298NLibrary
 {
@@ -14,7 +14,7 @@ namespace L298NLibrary
     {
         private L298NMotorController? _leftController;
         private L298NMotorController? _rightController;
-        private RaspberryPiBoard _raspberryPiBoard;
+        private RaspberryPiBoard? _raspberryPiBoard;
         private GpioController? _gpioOController;
         private readonly ILogger _logger;
         public double SpeedFactor { get; set; }
@@ -158,7 +158,7 @@ namespace L298NLibrary
         {
             if (_leftController!=null && _rightController!=null)
             {
-                 _logger.LogTrace.WriteLine("Stop");
+                 _logger.LogTrace("Stop");
                 //LoggingProcessor.AddTrace("Stop");
                 _leftController.Stop();
                 _rightController.Stop();
