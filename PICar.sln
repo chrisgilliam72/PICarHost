@@ -34,11 +34,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebCamHTMLInterface", "WebC
 		WebCamUI\index.html = WebCamUI\index.html
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltraborgWebAPI", "UltraborgWebAPI\UltraborgWebAPI.csproj", "{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UltraborgWebAPI", "UltraborgWebAPI\UltraborgWebAPI.csproj", "{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHatManualTest", "PanTiltManualTest\PanTiltHatManualTest.csproj", "{D971353D-AF72-4ED5-B9C3-30BCB3F13EB8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHATAutoTest", "PanTiltAutoTest\PanTiltHATAutoTest.csproj", "{EB9F1B13-7794-48D2-B516-7894D8CF533E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorControllerWebAPI", "MotorControllerWebAPI\MotorControllerWebAPI.csproj", "{3C35B322-68D8-45CB-A0BC-1339C87CEF91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +112,10 @@ Global
 		{EB9F1B13-7794-48D2-B516-7894D8CF533E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB9F1B13-7794-48D2-B516-7894D8CF533E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB9F1B13-7794-48D2-B516-7894D8CF533E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C35B322-68D8-45CB-A0BC-1339C87CEF91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C35B322-68D8-45CB-A0BC-1339C87CEF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C35B322-68D8-45CB-A0BC-1339C87CEF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C35B322-68D8-45CB-A0BC-1339C87CEF91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

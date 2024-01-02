@@ -90,6 +90,9 @@
             justify-content:start;
             align-content:center;
         }
+        .speedline{
+            display: flex;
+        }
     </style>
 
 </head>
@@ -102,38 +105,81 @@
                 <img src="http://pi4b/CamServer/Video">
             </div>
             <div class="table">
-                <h2>Servo Control</h2>
+                <h2>Camera Control</h2>
                 <div class="controlgrid">
                     <div></div>
                     <div>
-                        <button id="btnUp" class="btn" onclick="btnUp()">
+                        <button id="btnUp" class="btn" onclick="btnCameraUp()">
                             <img src="./images/UpArrow.png" class="buttonImg" />
                         </button>
                     </div>
                     <div></div>
                     <div>
-                        <button id='btnLeft' class="btn" onclick="btnRight()">
+                        <button id='btnLeft' class="btn" onclick="btnCameraRight()">
                             <img src="./images/Leftarrow.png" class="buttonImg" />
                         </button>
                     </div>
                     <div></div>
                     <div>
-                        <button id='btnRight' class="btn" onclick="btnLeft()">
+                        <button id='btnRight' class="btn" onclick="btnCameraLeft()">
                             <img src="./images/RightArrow.png" class="buttonImg" />
                         </button>
                     </div>
                     <div></div>
                     <div>
-                        <button id='btnDown' class="btn" onclick="btnDown()">
+                        <button id='btnDown' class="btn" onclick="btnCameraDown()">
                             <img src="./images/DownArrow.png" class="buttonImg" />
                         </button>
                     </div>
                 </div>
-                <h2>Distance</h2>
-                <div class="distanceGrid">
+                <h2>Car Control</h2>
+                <div class="controlgrid">
+                    <div></div>
+                    <div>
+                        <button id="btnUp" class="btn" onclick="btnCarFwd()">
+                            <img src="./images/UpArrow.png" class="buttonImg" />
+                        </button>
+                    </div>
+                    <div></div>
+                    <div>
+                        <button id='btnLeft' class="btn" onclick="btnCarRight()">
+                            <img src="./images/Leftarrow.png" class="buttonImg" />
+                        </button>
+                    </div>
+                    <div>
+                        <button id='btnLeft' class="btn" onclick="btnCarStop()">
+                            <img src="./images/Stop.png" class="buttonImg" />             
+                        </button>
+                    </div>
+                    <div>
+                        <button id='btnRight' class="btn" onclick="btnCameraRight()">
+                            <img src="./images/RightArrow.png" class="buttonImg" />
+                        </button>
+                    </div>
+                    <div></div>
+                    <div>
+                        <button id='btnDown' class="btn" onclick="btnCarBack()">
+                            <img src="./images/DownArrow.png" class="buttonImg" />
+                        </button>
+                    </div>
+                </div>
+                <div class="speedline">
+                    <div>
+                        <button id='btnFaster' class="btn" onclick="btnCarFaster()">
+                            <img src="./images/plus.png" class="buttonImg" />
+                        </button>
+                    </div>
+                    <div>
+                        <button id='btnSlower' class="btn" onclick="btnCarSlower()">
+                            <img src="./images/minus.png" class="buttonImg" />
+                        </button>
+                    </div>
+                </div>
+
+                <!-- <div class="distanceGrid">
                     <input id="distance" readonly style="width:100%; height:1.5rem"/>
                     <button onclick="btnGetDistance()" style="height:2rem"> </button>
-                </div>
+                </div> -->
                 
             </div>
             <!-- <input type="range" min="20" max="100", style="width:300px";> -->
@@ -144,24 +190,47 @@
 </html>
 
 <script>
-    async function btnUp() {
+    async function btnCameraUp() {
         await fetch('http://pi4b/PanTilt/up');
     }
 
-    async function btnDown() {
+    async function btnCameraDown() {
         await fetch('http://pi4b/PanTilt/down');
     }
 
-    async function btnRight() {
+    async function btnCameraRight() {
         await fetch('http://pi4b/PanTilt/Right');
     }
 
-    async function btnLeft() {
+    async function btnCameraLeft() {
         await fetch('http://pi4b/PanTilt/Left');
     }
 
-    async function btnGetDistance() {
-        await fetch('http://pi4b/Ultraborg/Left');
+    async function btnCarFwd() {
+        await fetch('http://pi4b/MotorController/forward');
+    }
+    async function btnCarRight() {
+        await fetch('http://pi4b/MotorController/right');
+    }
+
+    async function btnCarLeft() {
+        await fetch('http://pi4b/MotorController/left');
+    }
+
+    async function btnCarBack() {
+        await fetch('http://pi4b/MotorController/back');
+    }
+
+    async function btnCarStop() {
+        await fetch('http://pi4b/MotorController/stop');
+    }
+
+    async function btnCarFaster() {
+        await fetch('http://pi4b/MotorController/faster');
+    }
+
+    async function btnCarSlower() {
+        await fetch('http://pi4b/MotorController/slower');
     }
 
 
