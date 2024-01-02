@@ -136,29 +136,33 @@
                 <div class="controlgrid">
                     <div></div>
                     <div>
-                        <button id="btnUp" class="btn" onclick="btnCarFwd()">
+                        <button id="btnUp" class="btn" onmousedown="btnCarFwd()" onmouseup="btnCarStop()"
+                                                         onblur="btnCarStop()" onmouseleave="btnCarStop()">
                             <img src="./images/UpArrow.png" class="buttonImg" />
                         </button>
                     </div>
                     <div></div>
                     <div>
-                        <button id='btnLeft' class="btn" onclick="btnCarLeft()">
+                        <button id='btnLeft' class="btn" onmousedown="btnCarLeft()" onmouseup="btnCarStop()"
+                                                         onblur="btnCarStop()"  onmouseleave="btnCarStop()">
                             <img src="./images/Leftarrow.png" class="buttonImg" />
                         </button>
                     </div>
                     <div>
-                        <button id='btnLeft' class="btn" onclick="btnCarStop()">
+                        <button id='btnLeft' class="btn" onmousedown="btnCarStop()" >
                             <img src="./images/Stop.png" class="buttonImg" />             
                         </button>
                     </div>
                     <div>
-                        <button id='btnRight' class="btn" onclick="btnCarRight()">
+                        <button id='btnRight' class="btn" onmousedown="btnCarRight()" onmouseup="btnCarStop()"
+                                                            onblur="btnCarStop()" onmouseleave="btnCarStop()">
                             <img src="./images/RightArrow.png" class="buttonImg" />
                         </button>
                     </div>
                     <div></div>
                     <div>
-                        <button id='btnDown' class="btn" onclick="btnCarBack()">
+                        <button id='btnDown' class="btn" onmousedown="btnCarBack()" onmouseup="btnCarStop()"
+                                                        onblur="btnCarStop()" onmouseleave="btnCarStop()">
                             <img src="./images/DownArrow.png" class="buttonImg" />
                         </button>
                     </div>
