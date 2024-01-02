@@ -76,6 +76,5 @@ app.MapGet("/slower", () =>
 .WithName("slower")
 .WithOpenApi();
 
-app.Run();
-
+app.Run("http://localhost:8095");
 
