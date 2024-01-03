@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace L298NLibrary
 {
-    public  class L298NMotorProcessor
+    public  class L298NMotorProcessor : IMotorController 
     {
         private L298NMotorController? _leftController;
         private L298NMotorController? _rightController;
@@ -65,10 +65,15 @@ namespace L298NLibrary
             }
         }
 
-        public L298NMotorProcessor(int IN1, int IN2, int IN3, int IN4,ILogger logger)
+        public L298NMotorProcessor(ILoggerFactory loggerFactory)
         {
-            _logger=logger;
+            _logger=loggerFactory.CreateLogger("L298NMotorProcessor");
             _raspberryPiBoard = new RaspberryPiBoard();
+        }
+
+
+        public void Init(int IN1, int IN2, int IN3, int IN4)
+        {     
             _gpioOController = _raspberryPiBoard?.CreateGpioController();
 
             if (_gpioOController!=null)
@@ -76,12 +81,6 @@ namespace L298NLibrary
                 _leftController = new L298NMotorController(_gpioOController, 0, IN1, IN2);
                 _rightController = new L298NMotorController(_gpioOController, 1, IN3, IN4);
             }
-
-        }
-
-
-        public void InitControllers()
-        {
             _leftController?.Init();
             _rightController?.Init();
         }
@@ -92,29 +91,28 @@ namespace L298NLibrary
             _rightController?.CleanUp();
         }
 
-        public void UpdateSpeedFactor(double speedFactor)
+        public double UpdateSpeedFactor(double speedFactor)
         {
             if (speedFactor <= 1 && _leftController!=null && _rightController!=null)
             {
-                _logger.LogTrace("updating speed factor :" + speedFactor);
-                //LoggingProcessor.AddTrace("updating speed factor :" + speedFactor);
+                _logger.LogInformation("updating speed factor :" + speedFactor);
                 this.SpeedFactor = speedFactor;
                 _leftController.UpdateSpeed(speedFactor);
                 _rightController.UpdateSpeed(speedFactor);
-                 _logger.LogTrace("speed factor updated");
-                //LoggingProcessor.AddTrace("speed factor updated");
+                 _logger.LogInformation("speed factor updated");
+        
             }
             else
-                _logger.LogTrace("speed factor out of range");
-                //LoggingProcessor.AddTrace("speed factor out of range");  
+                _logger.LogInformation("speed factor out of range");
+                
+            return speedFactor;
         }
 
         public void StartForward()
         {            
             if (_leftController!=null && _rightController!=null)
             {
-                 _logger.LogTrace("Start Forward");
-                //LoggingProcessor.AddTrace("Start Forward");
+                 _logger.LogInformation("Start Forward");
                 _leftController.Forward();
                 _rightController.Forward();
             }
@@ -124,8 +122,7 @@ namespace L298NLibrary
         {
             if (_leftController!=null && _rightController!=null)
             {
-                 _logger.LogTrace("Start Backwards");
-                //LoggingProcessor.AddTrace("Start Backwards");
+                 _logger.LogInformation("Start Backwards");
                 _leftController.Back();
                 _rightController.Back();
             }
@@ -136,8 +133,7 @@ namespace L298NLibrary
         {    
             if (_leftController!=null && _rightController!=null)
             {
-                 _logger.LogTrace("Start Turn Left");
-                //LoggingProcessor.AddTrace("Start Turn Left");
+                 _logger.LogInformation("Start Turn Left");
                 _rightController.Stop();
                 _leftController.Forward();
             }
@@ -147,8 +143,7 @@ namespace L298NLibrary
         {
             if (_leftController!=null && _rightController!=null)
             {
-                 _logger.LogTrace("Start Turn Right");
-                //LoggingProcessor.AddTrace("Start Turn Right");
+                 _logger.LogInformation("Start Turn Right");
                 _leftController.Stop();
                 _rightController.Forward();
             }
@@ -158,8 +153,7 @@ namespace L298NLibrary
         {
             if (_leftController!=null && _rightController!=null)
             {
-                 _logger.LogTrace("Stop");
-                //LoggingProcessor.AddTrace("Stop");
+                 _logger.LogInformation("Stop");
                 _leftController.Stop();
                 _rightController.Stop();
             }
