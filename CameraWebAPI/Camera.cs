@@ -2,6 +2,7 @@ using Iot.Device.Media;
 //testing
 public class Camera
 {
+    public bool IsCapturing{ get  => device.IsCapturing; } 
     VideoConnectionSettings settings;
     VideoDevice device;
     CancellationTokenSource tokenSource = new CancellationTokenSource();
