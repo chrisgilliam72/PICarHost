@@ -562,6 +562,7 @@ namespace Ultraborg.Library
                         distance= (double)time_us * USM_US_TO_MM;
                         break;                        
                     }
+                    mre.WaitOne(100);
                     retryCount--;
                     continue;
                 }
