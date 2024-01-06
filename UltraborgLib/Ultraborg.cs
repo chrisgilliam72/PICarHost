@@ -5,6 +5,8 @@ using System.Device.I2c;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 using Ultraborg.Library.Servo;
 
 namespace Ultraborg.Library
@@ -527,100 +529,89 @@ namespace Ultraborg.Library
             return -1;
         }
 
+        private double GetDistanceFromCommand(byte command)
+        { 
+            int retryCount=3;
+            double distance=-1;
+            var mre= new ManualResetEvent(false);
+            var stpWtch= new Stopwatch();
+            while (retryCount>0)
+            {
+                byte[] recvBytes = new byte[I2C_MAX_LEN];
+                byte[] sendBytes = new byte[] { command };
+
+                try
+                {
+                    ubI2C.Write(sendBytes);
+                }
+                catch 
+                {
+                    mre.WaitOne(100);
+                    retryCount--;
+                    continue;
+                }
+                try
+                {
+                    mre.WaitOne(1);
+                    ubI2C.Read(recvBytes);
+                    if (recvBytes[0]==command)
+                    {
+                        int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
+                        if (time_us == 65535)
+                            time_us = -999; // Error value
+                        distance= (double)time_us * USM_US_TO_MM;
+                        break;                        
+                    }
+                    retryCount--;
+                    continue;
+                }
+                catch
+                {
+                    retryCount--;
+                    continue;
+                }
+            }
+
+            return distance;
+        }
         public double GetFilteredDistance1()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_FILTER_USM1 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_FILTER_USM1);
         }
 
         public double GetDistance1()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_TIME_USM1 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_TIME_USM1);
         }
 
         public double GetFilteredDistance2()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_FILTER_USM2 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_FILTER_USM2);
         }
 
         public double GetDistance2()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_TIME_USM2 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_TIME_USM2);            
         }
 
         public double GetFilteredDistance3()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_FILTER_USM3 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_FILTER_USM3);     
         }
 
         public double GetDistance3()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_TIME_USM3 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_TIME_USM3); 
         }
 
         public double GetFilteredDistance4()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_FILTER_USM4 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_FILTER_USM4);             
         }
 
         public double GetDistance4()
         {
-            byte[] recvBytes = new byte[I2C_MAX_LEN];
-            byte[] sendBytes = new byte[] { COMMAND_GET_TIME_USM4 };
-
-            ubI2C.Write(sendBytes);
-            ubI2C.Read(recvBytes);
-            int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
-            if (time_us == 65535) time_us = 0; // Error value
-            return (double)time_us * USM_US_TO_MM;
+            return GetDistanceFromCommand (COMMAND_GET_TIME_USM4);                 
         }
     }
 }

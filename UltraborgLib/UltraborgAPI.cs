@@ -42,7 +42,7 @@ namespace Ultraborg
 
         public double GetDistance(int sensorNo)
         {
-            return ultraborg.GetDistance(sensorNo);
+            return ultraborg.GetFilteredDistance(sensorNo);
         }
     }
 }
