@@ -75,6 +75,9 @@ namespace L298NLibrary
 
         public void Init(int IN1, int IN2, int IN3, int IN4)
         {     
+
+            _logger.LogInformation($"Controller  IN1= {IN1} In2={IN2} PWN Left= {PWMLChannel}");
+            _logger.LogInformation($"Controller  IN1= {IN3} In2={IN4} PWN Right= {PWMRChannel}");
             _gpioOController = _raspberryPiBoard?.CreateGpioController();
 
             if (_gpioOController!=null)

@@ -18,7 +18,7 @@ public class Camera
         settings = new VideoConnectionSettings(
             busId: 0,
             captureSize: (800, 600),
-            pixelFormat: PixelFormat.JPEG
+            pixelFormat: VideoPixelFormat.MPEG
         );
         settings.Brightness=50;
         settings.ExposureType=ExposureType.Auto;

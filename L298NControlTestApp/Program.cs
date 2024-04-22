@@ -1,13 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using L298NLibrary;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
+using IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostcontext, services) =>
+    {
+        services.AddSingleton<IMotorController,L298NMotorProcessor>();   
+    }).Build();
 
-using L298NLibrary;
-
-var motorCntrller = new L298NMotorProcessor(21,20,1,7);
-
-Console.WriteLine($"Controller  IN1= {motorCntrller.IN1} In2={motorCntrller.IN2} PWN Left= {motorCntrller.PWMLChannel}");
-Console.WriteLine($"Controller  IN3= {motorCntrller.IN3} In4={motorCntrller.IN4} PWN Right= {motorCntrller.PWMRChannel}");
-motorCntrller.InitControllers(); 
+Console.WriteLine("Initialising...");
+var motorCntrller= host.Services.GetService<IMotorController>();
+motorCntrller.Init(20,21,1,7);
 
 while (true)
 {
