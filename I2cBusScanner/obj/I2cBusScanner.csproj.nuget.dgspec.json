@@ -1,38 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chris\\Source\\projects\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj": {}
+    "/home/chris/Dev/PICarHost/I2cBusScanner/I2cBusScanner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chris\\Source\\projects\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj": {
+    "/home/chris/Dev/PICarHost/I2cBusScanner/I2cBusScanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chris\\Source\\projects\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
+        "projectUniqueName": "/home/chris/Dev/PICarHost/I2cBusScanner/I2cBusScanner.csproj",
         "projectName": "I2cBusScanner",
-        "projectPath": "C:\\Users\\chris\\Source\\projects\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
-        "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chris\\Source\\projects\\PICarHost\\I2cBusScanner\\obj\\",
+        "projectPath": "/home/chris/Dev/PICarHost/I2cBusScanner/I2cBusScanner.csproj",
+        "packagesPath": "/home/chris/.nuget/packages/",
+        "outputPath": "/home/chris/Dev/PICarHost/I2cBusScanner/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -42,12 +34,14 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "default"
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Iot.Device.Bindings": {
               "target": "Package",
@@ -70,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/chris/.dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

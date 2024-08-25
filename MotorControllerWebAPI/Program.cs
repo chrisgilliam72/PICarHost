@@ -13,8 +13,7 @@ builder.Services.AddSingleton<IMotorController,L298NMotorProcessor>();
 var app = builder.Build();
 var motorController=app.Services.GetService<IMotorController>();
 
-motorController?.Init(21,20,1,7);
-
+motorController?.Init(20,21,1,7);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

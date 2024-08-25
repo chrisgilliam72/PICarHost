@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
+    "net8.0": {
       "Iot.Device.Bindings/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -1073,7 +1073,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0": [
+    "net8.0": [
       "Iot.Device.Bindings >= 3.1.0"
     ]
   },
@@ -1083,24 +1083,24 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/chris/Dev/PICar/PICarHost/I2cBusScanner/I2cBusScanner.csproj",
+      "projectUniqueName": "/home/chris/Dev/PICarHost/I2cBusScanner/I2cBusScanner.csproj",
       "projectName": "I2cBusScanner",
-      "projectPath": "/home/chris/Dev/PICar/PICarHost/I2cBusScanner/I2cBusScanner.csproj",
+      "projectPath": "/home/chris/Dev/PICarHost/I2cBusScanner/I2cBusScanner.csproj",
       "packagesPath": "/home/chris/.nuget/packages/",
-      "outputPath": "/home/chris/Dev/PICar/PICarHost/I2cBusScanner/obj/",
+      "outputPath": "/home/chris/Dev/PICarHost/I2cBusScanner/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/chris/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net7.0"
+        "net8.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -1108,11 +1108,16 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net7.0": {
-        "targetAlias": "net7.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "Iot.Device.Bindings": {
             "target": "Package",
@@ -1130,26 +1135,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.14, 7.0.14]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-arm64",
-            "version": "[7.0.14, 7.0.14]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.14, 7.0.14]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/chris/.dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/chris/.dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
