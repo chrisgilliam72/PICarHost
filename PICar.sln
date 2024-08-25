@@ -42,6 +42,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHATAutoTest", "PanTi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorControllerWebAPI", "MotorControllerWebAPI\MotorControllerWebAPI.csproj", "{3C35B322-68D8-45CB-A0BC-1339C87CEF91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraLibrary", "CameraLibrary\CameraLibrary.csproj", "{EB14C042-57CA-4388-B932-E3817DD5C0C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraWebAPI", "CameraWebAPI\CameraWebAPI.csproj", "{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +120,14 @@ Global
 		{3C35B322-68D8-45CB-A0BC-1339C87CEF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C35B322-68D8-45CB-A0BC-1339C87CEF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C35B322-68D8-45CB-A0BC-1339C87CEF91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB14C042-57CA-4388-B932-E3817DD5C0C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB14C042-57CA-4388-B932-E3817DD5C0C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB14C042-57CA-4388-B932-E3817DD5C0C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB14C042-57CA-4388-B932-E3817DD5C0C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
