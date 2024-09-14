@@ -10,7 +10,7 @@ namespace DataStreamHub
         {
             _logger=loggerFactory.CreateLogger("DataStreamHub");
         }
-
+        
         public async Task SendMessage(string clientName, string clientMessage)
         {
             _logger.LogInformation($"Hub Message forwarded Client {clientName} : Message {clientMessage}");

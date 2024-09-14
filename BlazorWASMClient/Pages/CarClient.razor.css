@@ -1,0 +1,88 @@
+﻿
+button {
+    margin: 10px 15px 10px 15px;
+    width: 50px;
+    height: 50px;
+}
+
+input {
+    margin: 10px 15px 10px 15px;
+    width: 50px;
+    height: 50px;
+}
+
+.buttonImg {
+    width: 25px;
+    height: 25px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    background-color: blue;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+div img {
+    width: 1024px;
+    height: 720px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlgrid {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    justify-content: center;
+    align-items: center;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1rem;
+    align-items: start;
+}
+
+.btn {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.distanceGrid {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+}
+
+.speedline {
+    display: flex;
+}
+
+

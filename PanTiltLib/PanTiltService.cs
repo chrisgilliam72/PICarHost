@@ -8,9 +8,9 @@ namespace PanTiltHatLib
     public class PanTiltService : IPanTiltService
     {
         private const int MINHPOS=20;
-        private const int MINVPOS=60;
+        private const int MINVPOS=120;
         private const int MAXHPOS=170;
-        private const int MAXVPOS=170;
+        private const int MAXVPOS=150;
 
         private int _hAngle;
         private int _vAngle;

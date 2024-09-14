@@ -7,15 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PICarServerLib", "PICarServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PICarTest", "TestApp\PICarTest.csproj", "{3232DF41-00B5-49EB-9B79-3E83D3C15D69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PICarUIServer", "PICarUIServer\PICarUIServer.csproj", "{9C7B5235-DEC6-4536-878F-ABB06BAFC10C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L298NControllerTest", "L298NControlTestApp\L298NControllerTest.csproj", "{682B3452-0CC8-4F38-B4BC-99BF7CF70FE9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonicSensorTest", "SonicSensorTestApp\SonicSensorTest.csproj", "{40666484-D1E4-41A7-B81D-32B37083BA08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "I2cBusScanner", "I2cBusScanner\I2cBusScanner.csproj", "{05A70113-EA25-4500-A888-E0D70774CB84}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PICarAPUI", "PICarAPUI\PICarAPUI.csproj", "{2C6D3942-329E-460E-BD05-4F203B8A1504}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UltraborgLib", "UltraborgLib\UltraborgLib.csproj", "{24A4E5E9-BB19-40F0-AF17-8477CCC3626B}"
 EndProject
@@ -26,8 +22,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltLibrary", "PanTiltLib\PanTiltLibrary.csproj", "{02F47DF5-D209-40C1-802D-3BEC3676E67B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltWebAPI", "PanTiltWebAPI\PanTiltWebAPI.csproj", "{600B4450-61C8-41F2-86FE-B72D00A901FF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PiCameraWebServer", "CameraWebAPI\PiCameraWebServer.csproj", "{132669BE-1077-4F10-B6E6-6BC51709BB3C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebCamHTMLInterface", "WebCamHTMLInterface", "{DEB339A1-7648-48F8-BD37-37E546BA5C7B}"
 	ProjectSection(SolutionItems) = preProject
@@ -42,9 +36,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanTiltHATAutoTest", "PanTi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorControllerWebAPI", "MotorControllerWebAPI\MotorControllerWebAPI.csproj", "{3C35B322-68D8-45CB-A0BC-1339C87CEF91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraLibrary", "CameraLibrary\CameraLibrary.csproj", "{EB14C042-57CA-4388-B932-E3817DD5C0C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CameraLibrary", "CameraLibrary\CameraLibrary.csproj", "{EB14C042-57CA-4388-B932-E3817DD5C0C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraWebAPI", "CameraWebAPI\CameraWebAPI.csproj", "{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CameraWebAPI", "CameraWebAPI\CameraWebAPI.csproj", "{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonicSensorStream", "SonicSensorStream\SonicSensorStream.csproj", "{C31DF0A1-05D3-47B0-B342-3EE98023949A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWASMClient", "BlazorWASMClient\BlazorWASMClient.csproj", "{68A084C4-3ADF-4699-BB8D-18261656B936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,10 +58,6 @@ Global
 		{3232DF41-00B5-49EB-9B79-3E83D3C15D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3232DF41-00B5-49EB-9B79-3E83D3C15D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3232DF41-00B5-49EB-9B79-3E83D3C15D69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C7B5235-DEC6-4536-878F-ABB06BAFC10C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C7B5235-DEC6-4536-878F-ABB06BAFC10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C7B5235-DEC6-4536-878F-ABB06BAFC10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C7B5235-DEC6-4536-878F-ABB06BAFC10C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{682B3452-0CC8-4F38-B4BC-99BF7CF70FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{682B3452-0CC8-4F38-B4BC-99BF7CF70FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{682B3452-0CC8-4F38-B4BC-99BF7CF70FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,10 +70,6 @@ Global
 		{05A70113-EA25-4500-A888-E0D70774CB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05A70113-EA25-4500-A888-E0D70774CB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05A70113-EA25-4500-A888-E0D70774CB84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C6D3942-329E-460E-BD05-4F203B8A1504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C6D3942-329E-460E-BD05-4F203B8A1504}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C6D3942-329E-460E-BD05-4F203B8A1504}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C6D3942-329E-460E-BD05-4F203B8A1504}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24A4E5E9-BB19-40F0-AF17-8477CCC3626B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24A4E5E9-BB19-40F0-AF17-8477CCC3626B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24A4E5E9-BB19-40F0-AF17-8477CCC3626B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -100,10 +90,6 @@ Global
 		{600B4450-61C8-41F2-86FE-B72D00A901FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{600B4450-61C8-41F2-86FE-B72D00A901FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{600B4450-61C8-41F2-86FE-B72D00A901FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{132669BE-1077-4F10-B6E6-6BC51709BB3C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1F08AFC-2814-48EA-A6CD-BB55DEC9DB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -128,6 +114,14 @@ Global
 		{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5965E2AB-F87E-47F7-9B6F-8835AB44DD61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C31DF0A1-05D3-47B0-B342-3EE98023949A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C31DF0A1-05D3-47B0-B342-3EE98023949A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C31DF0A1-05D3-47B0-B342-3EE98023949A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C31DF0A1-05D3-47B0-B342-3EE98023949A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68A084C4-3ADF-4699-BB8D-18261656B936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A084C4-3ADF-4699-BB8D-18261656B936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A084C4-3ADF-4699-BB8D-18261656B936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A084C4-3ADF-4699-BB8D-18261656B936}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

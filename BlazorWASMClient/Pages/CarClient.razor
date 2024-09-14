@@ -1,0 +1,91 @@
+﻿<div id="container" class="main">
+    <div class="title"> PI Car Web Control</div>
+    <div class="split">
+        <div>
+@*             <img src="http://pi4b/CamServer/Video"> *@
+        </div>
+        <div class="table">
+            <h2>Camera Control</h2>
+            <div class="controlgrid">
+                <div></div>
+                <div>
+                    <button id="btnUp" class="btn" @onclick="()=>OnCameraUp()">
+                        <img src="./images/UpArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div></div>
+                <div>
+                    <button id='btnLeft' class="btn" @onclick="()=>OnCameraLeft()">
+                        <img src="./images/Leftarrow.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div></div>
+                <div>
+                    <button id='btnRight' class="btn" @onclick="()=>OnCameraRight()">
+                        <img src="./images/RightArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div></div>
+                <div>
+                    <button id='btnDown' class="btn" @onclick="()=>OnCameraDown()">
+                        <img src="./images/DownArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+            </div>
+            <h2>Car Control</h2>
+            <div class="controlgrid">
+                <div></div>
+                <div>
+                    <button id="btnUp" class="btn" @onmousedown="()=>OnCarForward()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/UpArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div></div>
+                <div>
+                    <button id='btnLeft' class="btn" @onmousedown="()=>OnCarLeft()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/Leftarrow.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div>
+                    <button id='btnLeft' class="btn" @onmousedown="()=>OnCarStop()">
+                        <img src="./images/Stop.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div>
+                    <button id='btnRight' class="btn" @onmousedown="()=>OnCarRight()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/RightArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div></div>
+                <div>
+                    <button id='btnDown' class="btn" @onmousedown="()=>OnCarBack()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/DownArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+            </div>
+            <div class="speedline">
+                <div>
+                    <button id='btnFaster' class="btn" @onclick="() => OnCarFaster()">
+                        <img src="./images/plus.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div>
+                    <button id='btnSlower' class="btn" @onclick="()=>OnCarSlower()">
+                        <img src="./images/minus.png" class="buttonImg" />
+                    </button>
+                </div>
+            </div>
+
+            <!-- <div class="distanceGrid">
+                <input id="distance" readonly style="width:100%; height:1.5rem"/>
+                <button onclick="btnGetDistance()" style="height:2rem"> </button>
+            </div> -->
+
+        </div>
+        <!-- <input type="range" min="20" max="100", style="width:300px";> -->
+    </div>
+</div>
