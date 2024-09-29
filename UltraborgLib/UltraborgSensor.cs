@@ -10,7 +10,7 @@ namespace Ultraborg.Library.Sensor
     public class UltraborgSensor
     {
         private int SensorNo { get; set; }
-        private Ultraborg Ultraborg { get; set; }
+        private Ultraborg? Ultraborg { get; set; }
 
         public UltraborgSensor(int sensorNo)
         {
@@ -25,6 +25,8 @@ namespace Ultraborg.Library.Sensor
 
         public double GetDistance()
         {
+            if (Ultraborg == null)
+                return -100;
             return Ultraborg.GetDistance(SensorNo);
         }
     }

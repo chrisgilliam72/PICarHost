@@ -9,6 +9,40 @@ partial class CarClient
     [Inject]
     public IHttpClientFactory HttpClientFactory { get; set; }
     const string _baseAddress = @"https://pi4b.local/";
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Define the hub connection
+        var connection = new HubConnectionBuilder()
+            .WithUrl("https://pi4b.local/DataStream") // Match the SignalR hub URL
+            .Build();
+
+        // Register a handler for receiving messages from the hub
+        connection.On<string, string>("Pi Data Message", (clientName, clientMessage) =>
+        {
+            Console.WriteLine($"Received message from {clientName}: {clientMessage}");
+        });
+
+        try
+        {
+            // Start the connection
+            await connection.StartAsync();
+            Console.WriteLine("Connected to SignalR hub.");
+
+            // Keep the console app running and listening for messages
+            Console.WriteLine("Listening for messages. Press any key to exit...");
+            Console.ReadKey();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error connecting to SignalR hub: {ex.Message}");
+        }
+        finally
+        {
+            // Stop the connection
+            await connection.StopAsync();
+        }
+    }
     void OnCameraUp()
     {
         Logger.LogInformation("Camera Up");

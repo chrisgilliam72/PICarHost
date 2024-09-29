@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CameraWebAPI", "CameraWebAP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonicSensorStream", "SonicSensorStream\SonicSensorStream.csproj", "{C31DF0A1-05D3-47B0-B342-3EE98023949A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWASMClient", "BlazorWASMClient\BlazorWASMClient.csproj", "{68A084C4-3ADF-4699-BB8D-18261656B936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWASMClient", "BlazorWASMClient\BlazorWASMClient.csproj", "{68A084C4-3ADF-4699-BB8D-18261656B936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

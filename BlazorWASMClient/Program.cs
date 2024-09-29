@@ -25,6 +25,6 @@ builder.Services.AddLogging(logging =>
     logging.ClearProviders();
 });
 
-builder.Build().RunAsync();
+await builder.Build().RunAsync();
 
 

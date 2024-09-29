@@ -20,7 +20,7 @@ public class LibCamera : ICamera
         var builder = new CommandOptionsBuilder()
             .With(new CommandOptionAndValue(CommandOptionsBuilder.Get(Command.Nopreview)))
             .WithTimeout(1)
-            // .WithVflip()
+             .WithVflip()
             // .WithHflip()
             .WithPictureOptions(90, "jpg")
             .WithResolution(1080, 720);
