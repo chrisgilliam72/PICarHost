@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace BlazorWASMClient.Pages;
 
@@ -20,18 +21,14 @@ partial class CarClient
         // Register a handler for receiving messages from the hub
         connection.On<string, string>("Pi Data Message", (clientName, clientMessage) =>
         {
-            Console.WriteLine($"Received message from {clientName}: {clientMessage}");
+
         });
 
         try
         {
             // Start the connection
             await connection.StartAsync();
-            Console.WriteLine("Connected to SignalR hub.");
 
-            // Keep the console app running and listening for messages
-            Console.WriteLine("Listening for messages. Press any key to exit...");
-            Console.ReadKey();
         }
         catch (Exception ex)
         {
