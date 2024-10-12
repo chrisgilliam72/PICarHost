@@ -20,7 +20,7 @@ if (address != -1)
         Console.WriteLine("Ultraborg Library initialised");
         Console.WriteLine("Connecting to SignalR Hub");
         var connection = new HubConnectionBuilder()
-                    .WithUrl("http://localhost:8070/DataStream")
+                    .WithUrl("https://localhost:8070/DataStream")
                     .Build();
 
         Console.WriteLine("SignalR Hub State:"+ connection.State.ToString());

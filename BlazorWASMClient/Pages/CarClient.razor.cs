@@ -15,7 +15,10 @@ partial class CarClient
     {
         // Define the hub connection
         var connection = new HubConnectionBuilder()
-            .WithUrl("https://pi4b.local/DataStream") // Match the SignalR hub URL
+            .WithUrl("https://pi4b.local/DataStream", options =>
+            {
+                options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
+            })
             .Build();
 
         // Register a handler for receiving messages from the hub

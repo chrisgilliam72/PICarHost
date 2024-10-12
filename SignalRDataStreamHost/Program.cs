@@ -20,8 +20,8 @@ app.MapHub<DataStreamHub.DataStreamHub>("/DataStream");
 // Configure the HTTP request pipeline.
 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-app.Run("http://localhost:8070");
+app.Run("https://localhost:8070");
 
 
