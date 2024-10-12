@@ -8,7 +8,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowBlazorClient", builder =>
     {
-        builder.AllowAnyOrigin()
+        builder.WithOrigins("https://localhost:7180")
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials();  // Required for WebSockets
