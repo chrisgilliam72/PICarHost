@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace BlazorWASMClient.Pages;
@@ -10,27 +11,31 @@ partial class CarClient
     [Inject]
     public IHttpClientFactory HttpClientFactory { get; set; }
     const string _baseAddress = @"https://pi4b.local/";
-
+    HubConnection? _hubConnection;
+    string Distance { get; set; }
     protected override async Task OnInitializedAsync()
     {
         // Define the hub connection
-        var connection = new HubConnectionBuilder()
-            .WithUrl("https://pi4b.local/DataStream", options =>
+        _hubConnection = new HubConnectionBuilder()
+            .WithUrl("http://localhost:8070/Datastream", options =>
             {
-                options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
+                options.Transports = HttpTransportType.WebSockets | HttpTransportType.LongPolling; // Allow multiple transports
             })
             .Build();
 
         // Register a handler for receiving messages from the hub
-        connection.On<string, string>("Pi Data Message", (clientName, clientMessage) =>
+        _hubConnection.On<string, string>("Pi Data Message", (clientName, clientMessage) =>
         {
+            Distance = clientMessage;
+            StateHasChanged(); // Notify the component to re-render
 
         });
 
         try
         {
             // Start the connection
-            await connection.StartAsync();
+            await _hubConnection.StartAsync();
+            Console.WriteLine("Connection state: "+ _hubConnection.State.ToString());
 
         }
         catch (Exception ex)
@@ -39,8 +44,7 @@ partial class CarClient
         }
         finally
         {
-            // Stop the connection
-            await connection.StopAsync();
+
         }
     }
     void OnCameraUp()
@@ -116,3 +120,4 @@ partial class CarClient
         Logger.LogInformation("Car Stop");
     }
 }
+

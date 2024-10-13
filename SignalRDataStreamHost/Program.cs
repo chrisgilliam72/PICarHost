@@ -22,6 +22,6 @@ app.MapHub<DataStreamHub.DataStreamHub>("/DataStream");
 
 //app.UseHttpsRedirection();
 
-app.Run("https://localhost:8070");
+app.Run("http://*:8070");
 
 
