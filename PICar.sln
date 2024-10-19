@@ -46,6 +46,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWASMClient", "BlazorW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRDataHost", "SignalRDataStreamHost\SignalRDataHost.csproj", "{7050671E-3A95-4229-8ADA-49D1007982D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServerClient", "BlazorServerClient\BlazorServerClient.csproj", "{BBC2EA6E-2232-4A15-B414-2132A2B2B432}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,10 @@ Global
 		{7050671E-3A95-4229-8ADA-49D1007982D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7050671E-3A95-4229-8ADA-49D1007982D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7050671E-3A95-4229-8ADA-49D1007982D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC2EA6E-2232-4A15-B414-2132A2B2B432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC2EA6E-2232-4A15-B414-2132A2B2B432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC2EA6E-2232-4A15-B414-2132A2B2B432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC2EA6E-2232-4A15-B414-2132A2B2B432}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

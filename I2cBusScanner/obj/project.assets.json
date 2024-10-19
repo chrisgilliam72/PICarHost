@@ -1085,11 +1085,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chris\\Source\\Repos\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
+      "projectUniqueName": "\\\\pi4b\\dev\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
       "projectName": "I2cBusScanner",
-      "projectPath": "C:\\Users\\chris\\Source\\Repos\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
+      "projectPath": "\\\\pi4b\\dev\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
       "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chris\\Source\\Repos\\PICarHost\\I2cBusScanner\\obj\\",
+      "outputPath": "\\\\pi4b\\dev\\PICarHost\\I2cBusScanner\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
