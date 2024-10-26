@@ -1,83 +1,78 @@
-﻿
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
+using PanTiltHatLib;
+
 namespace BlazorServerClient.Pages;
 
 partial class CarClient
 {
     [Inject]
-    public ILogger<CarClient> Logger { get; set; }
-
+    public ILogger<CarClient>? Logger { get; set; }
+    [Inject]
+    public IPanTiltService? PanTiltService {get;set;}
 
     protected override async Task OnInitializedAsync()
     {
-        // Define the hub connection
+        if (PanTiltService!=null)
+            PanTiltService.Init(0x40,50);
 
-    }
+        }
     void OnCameraUp()
     {
-        Logger.LogInformation("Camera Up");
-
+        PanTiltService?.Up();
+        Logger?.LogInformation("Camera Up");
 
     }
 
-    async Task OnCameraDown()
+    void OnCameraDown()
     {
-        Logger.LogInformation("Camera Down");
-
-
+        PanTiltService?.Down();
+        Logger?.LogInformation("Camera Down");
     }
 
     void OnCameraRight()
     {
-        Logger.LogInformation("Camera Right");
-
+        PanTiltService?.Right();        
+        Logger?.LogInformation("Camera Right");
     }
 
     void OnCameraLeft()
     {
-        Logger.LogInformation("Camera Left");
-
-
+        PanTiltService?.Left();         
+        Logger?.LogInformation("Camera Left");
     }
     void OnCarRight()
     {
-
-        Logger.LogInformation("Car Right");
+        Logger?.LogInformation("Car Right");
     }
 
 
     void OnCarLeft()
     {
-
-        Logger.LogInformation("Car Left");
+        Logger?.LogInformation("Car Left");
     }
 
     void OnCarForward()
     {
-
-        Logger.LogInformation("Car Forward");
+        Logger?.LogInformation("Car Forward");
     }
     void OnCarBack()
     {
-
-        Logger.LogInformation("Car Back");
+        Logger?.LogInformation("Car Back");
     }
 
     void OnCarSlower()
     {
-
-        Logger.LogInformation("Car Slower");
+        Logger?.LogInformation("Car Slower");
     }
 
     void OnCarFaster()
     {
-
-        Logger.LogInformation("Car Faster");
+        Logger?.LogInformation("Car Faster");
     }
 
 
     void OnCarStop()
     {
-        Logger.LogInformation("Car Stop");
+        Logger?.LogInformation("Car Stop");
     }
 }

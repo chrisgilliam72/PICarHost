@@ -1,7 +1,7 @@
 using BlazorServerClient.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-
+using PanTiltHatLib;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +11,7 @@ builder.Services.AddLogging(logging =>
 {
     logging.ClearProviders();
 });
+builder.Services.AddSingleton<IPanTiltService,PanTiltService>(); 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
