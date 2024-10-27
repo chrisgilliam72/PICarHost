@@ -5,8 +5,8 @@ namespace Ultraborg
 
     public interface IUltraborgAPI
     {
-        bool Setup();
-        double GetDistance(int sensorNo);
+        public bool Setup();
+        public double GetDistance(int sensorNo);
     }
 
     public class UltraborgAPI : IUltraborgAPI

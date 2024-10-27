@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PanTiltHatLib;
-
+using Ultraborg;
 namespace BlazorServerClient.Pages;
 
 partial class CarClient
@@ -9,13 +9,44 @@ partial class CarClient
     public ILogger<CarClient>? Logger { get; set; }
     [Inject]
     public IPanTiltService? PanTiltService {get;set;}
-
+    [Inject]
+    public IUltraborgAPI? UltraborgAPI {get;set;}
+    private Timer _timer;
+    private bool _isRunning = false;
+    private string Distance {get;set;}
+    private double LastDistance {get;set;}
     protected override async Task OnInitializedAsync()
     {
         if (PanTiltService!=null)
             PanTiltService.Init(0x40,50);
+        if (UltraborgAPI!=null)         
+            UltraborgAPI.Setup();   
+        LastDistance=0.0;
+        PollDistance();
+    }
 
+    private void PollDistance()
+    {
+       if (!_isRunning)
+        {
+            _isRunning = true;
+            _timer = new Timer(async _ =>
+            {
+                await InvokeAsync( async () =>
+                {
+                    var ubDistance =UltraborgAPI?.GetDistance(1);
+                    if (ubDistance.HasValue && Math.Abs(LastDistance-ubDistance.Value)>0.5)
+                    {
+                        Distance=string.Format("{0:F1}",ubDistance);
+                    }
+
+                    
+                    StateHasChanged(); // Update the UI if needed
+                });
+
+            }, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100)); // Call every 10 seconds
         }
+    }
     void OnCameraUp()
     {
         PanTiltService?.Up();

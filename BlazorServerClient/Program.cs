@@ -2,6 +2,7 @@ using BlazorServerClient.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using PanTiltHatLib;
+using Ultraborg;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +14,7 @@ builder.Services.AddLogging(logging =>
     logging.AddConsole();
 });
 builder.Services.AddSingleton<IPanTiltService,PanTiltService>(); 
+builder.Services.AddSingleton<IUltraborgAPI,UltraborgAPI>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
