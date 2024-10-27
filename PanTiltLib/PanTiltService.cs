@@ -56,11 +56,11 @@ namespace PanTiltHatLib
 
         public void Reset()
         {
-            _logger.LogInformation("Reset request");
-            _PCA9685.SetRotationAngle(1,MINHPOS);
-            _PCA9685.SetRotationAngle(0,MINVPOS);
-            _hAngle=MINHPOS;
-            _vAngle=MINVPOS;
+            _PCA9685.SetRotationAngle(1,90);
+            _PCA9685.SetRotationAngle(0,70);
+            _hAngle=90;
+            _vAngle=70;
+            _logger.LogInformation($"Reset request: H-Angle:{_hAngle}, V-Angle:{_vAngle}");
         }
 
         public int HPos(double pos)
@@ -105,6 +105,7 @@ namespace PanTiltHatLib
                 _logger.LogInformation("Up request");
                 _PCA9685.SetRotationAngle(0,_vAngle+_vIncrement);
                 _vAngle=_vAngle+_vIncrement;
+                _logger.LogInformation($"V-Angle:{_vAngle}");
             }
 
             return _vAngle;
@@ -117,6 +118,7 @@ namespace PanTiltHatLib
                 _logger.LogInformation("Down request");
                 _PCA9685.SetRotationAngle(0,_vAngle-_vIncrement);
                 _vAngle=_vAngle-_vIncrement;
+                _logger.LogInformation($"V-Angle:{_vAngle}");
             }
 
             return _vAngle;
@@ -127,8 +129,9 @@ namespace PanTiltHatLib
             if (_hAngle+_hIncrement<=180)
             {
                 _logger.LogInformation("Left request");
-                _PCA9685.SetRotationAngle(1,_hAngle+_hIncrement);
-                _hAngle=_hAngle+_hIncrement;
+                _PCA9685.SetRotationAngle(1,_hAngle-_hIncrement);
+                _hAngle=_hAngle-_hIncrement;
+                _logger.LogInformation($"H-Angle:{_hAngle}");
             }
 
             return _hAngle;
@@ -140,8 +143,9 @@ namespace PanTiltHatLib
             if (_hAngle-_hIncrement>=0)
             {
                 _logger.LogInformation("Left request");
-                _PCA9685.SetRotationAngle(1,_hAngle-_hIncrement);
-                _hAngle=_hAngle-_hIncrement;
+                _PCA9685.SetRotationAngle(1,_hAngle+_hIncrement);
+                _hAngle=_hAngle+_hIncrement;
+                _logger.LogInformation($"H-Angle:{_hAngle}");
             }
 
             return _hAngle;

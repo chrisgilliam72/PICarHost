@@ -10,6 +10,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddLogging(logging =>
 {
     logging.ClearProviders();
+    logging.AddConsole();
 });
 builder.Services.AddSingleton<IPanTiltService,PanTiltService>(); 
 var app = builder.Build();
