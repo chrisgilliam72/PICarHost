@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PanTiltLib\PanTiltLibrary.csproj" />
     <ProjectReference Include="..\UltraborgLib\UltraborgLib.csproj" />
+    <ProjectReference Include="..\CameraLibrary\CameraLibrary.csproj" />
   </ItemGroup>
 
 </Project>

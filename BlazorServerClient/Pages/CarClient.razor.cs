@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PanTiltHatLib;
 using Ultraborg;
+using CameraLibrary;
 namespace BlazorServerClient.Pages;
 
 partial class CarClient
@@ -11,26 +12,60 @@ partial class CarClient
     public IPanTiltService? PanTiltService {get;set;}
     [Inject]
     public IUltraborgAPI? UltraborgAPI {get;set;}
-    private Timer _timer;
-    private bool _isRunning = false;
+    [Inject]
+    public ICamera? Camera {get;set;}
+    private Timer _distanceTimer;
+    private Timer __imageTimer;
+    private bool _isImagerRunning = false;
+    private bool _isDistanceSensorRunning = false;
     private string Distance {get;set;}
     private double LastDistance {get;set;}
+     private byte[] imageData;
     protected override async Task OnInitializedAsync()
     {
         if (PanTiltService!=null)
             PanTiltService.Init(0x40,50);
         if (UltraborgAPI!=null)         
             UltraborgAPI.Setup();   
+        if (Camera!=null)
+            Camera.StartCapture();
         LastDistance=0.0;
         PollDistance();
+        PollImages();
     }
 
+    private void PollImages()
+    {
+       if (!_isImagerRunning)
+        {
+            _isImagerRunning = true;
+            __imageTimer = new Timer(async _ =>
+            {
+                await InvokeAsync( async () =>
+                {
+                    if (Camera.HasImages())
+                    {
+                        var tmpData=Camera.GetImage();
+                        if (tmpData!=null)
+                        {
+                            Logger.LogInformation($"Image Data: {tmpData.Length}");
+                            imageData = tmpData;
+                            StateHasChanged(); // Update the UI if needed
+                        }
+
+                    }
+                    
+                });
+
+            }, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100)); // Call every 10 seconds
+        }
+    }
     private void PollDistance()
     {
-       if (!_isRunning)
+       if (!_isDistanceSensorRunning)
         {
-            _isRunning = true;
-            _timer = new Timer(async _ =>
+            _isDistanceSensorRunning = true;
+            _distanceTimer = new Timer(async _ =>
             {
                 await InvokeAsync( async () =>
                 {
