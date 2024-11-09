@@ -10,7 +10,7 @@ using IHost host = Host.CreateDefaultBuilder(args)
 
 Console.WriteLine("Initialising...");
 var motorCntrller= host.Services.GetService<IMotorController>();
-motorCntrller.Init(20,21,1,7);
+motorCntrller.Init(7,1,21,20);
 
 while (true)
 {
@@ -22,6 +22,8 @@ while (true)
         case '2':Console.WriteLine("slower"); motorCntrller.UpdateSpeedFactor(speedFactor+0.1); break;       
         case 'f': Console.WriteLine("Forward"); motorCntrller.StartForward(); ; break;
         case 'b': Console.WriteLine("Backwards"); motorCntrller.StartBackwards(); break;
+        case 'l': Console.WriteLine("Left");motorCntrller.StartTurnLeft();break;
+        case 'r': Console.WriteLine("Right");motorCntrller.StartTurnRight();break;
         case 's': Console.WriteLine("Stop"); motorCntrller.Stop(); break;
         case 'x': motorCntrller.CleanUp(); Environment.Exit(0);break ;
     }
