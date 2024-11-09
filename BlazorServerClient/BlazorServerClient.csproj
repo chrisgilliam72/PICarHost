@@ -10,6 +10,7 @@
     <ProjectReference Include="..\PanTiltLib\PanTiltLibrary.csproj" />
     <ProjectReference Include="..\UltraborgLib\UltraborgLib.csproj" />
     <ProjectReference Include="..\CameraLibrary\CameraLibrary.csproj" />
+    <ProjectReference Include="..\L298NLibrary\L298NLibrary.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using PanTiltHatLib;
 using Ultraborg; 
 using CameraLibrary;
+using L298NLibrary;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +18,7 @@ builder.Services.AddLogging(logging =>
 builder.Services.AddSingleton<IPanTiltService,PanTiltService>(); 
 builder.Services.AddSingleton<IUltraborgAPI,UltraborgAPI>();
 builder.Services.AddSingleton<ICamera, LibCamera>();
+builder.Services.AddSingleton<IMotorController,L298NMotorProcessor>(); 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

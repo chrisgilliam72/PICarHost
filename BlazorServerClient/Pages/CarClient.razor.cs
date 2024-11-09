@@ -2,6 +2,7 @@
 using PanTiltHatLib;
 using Ultraborg;
 using CameraLibrary;
+using L298NLibrary;
 namespace BlazorServerClient.Pages;
 
 partial class CarClient
@@ -15,6 +16,8 @@ partial class CarClient
     public IUltraborgAPI? UltraborgAPI {get;set;}
     [Inject]
     public ICamera? Camera {get;set;}
+    [Inject]
+    IMotorController? MotorController  {get;set;}
     private Timer _distanceTimer;
     private Timer __imageTimer;
     private bool _isImagerRunning = false;
@@ -22,17 +25,32 @@ partial class CarClient
     private string Distance {get;set;}
     private double LastDistance {get;set;}
      private byte[] imageData;
+    private double? SpeedFactor {get;set;}=0.5;
     protected override async Task OnInitializedAsync()
     {
-        if (PanTiltService!=null)
-            PanTiltService.Init(0x40,50);
-        if (UltraborgAPI!=null)         
-            UltraborgAPI.Setup();   
-        if (Camera!=null)
-            Camera.StartCapture();
-        LastDistance=0.0;
-        PollDistance();
-        PollImages();
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (PanTiltService!=null)
+                PanTiltService.Init(0x40,50);
+            if (UltraborgAPI!=null)         
+                UltraborgAPI.Setup();   
+            if (Camera!=null)
+                Camera.StartCapture();
+            if (MotorController!=null)    
+            {
+                MotorController.Init(7,1,21,20);
+                SpeedFactor=MotorController.UpdateSpeedFactor(0.5);
+            }      
+
+            LastDistance=0.0;
+            PollDistance();
+            PollImages();  
+        }
+      
     }
 
     private void PollImages()
@@ -49,7 +67,7 @@ partial class CarClient
                         var tmpData=Camera.GetImage();
                         if (tmpData!=null)
                         {
-                            Logger.LogInformation($"Image Data: {tmpData.Length}");
+                            Logger.LogDebug($"Image Data: {tmpData.Length}");
                             imageData = tmpData;
                             StateHasChanged(); // Update the UI if needed
                         }
@@ -109,37 +127,44 @@ partial class CarClient
     }
     void OnCarRight()
     {
+        MotorController?.StartTurnRight();
         Logger?.LogInformation("Car Right");
     }
 
 
     void OnCarLeft()
     {
+        MotorController?.StartTurnLeft();
         Logger?.LogInformation("Car Left");
     }
 
     void OnCarForward()
     {
+        MotorController?.StartForward();
         Logger?.LogInformation("Car Forward");
     }
     void OnCarBack()
     {
+        MotorController?.StartBackwards();
         Logger?.LogInformation("Car Back");
     }
 
     void OnCarSlower()
     {
+        SpeedFactor=MotorController?.UpdateSpeedFactor(SpeedFactor.Value-0.1);
         Logger?.LogInformation("Car Slower");
     }
 
     void OnCarFaster()
     {
+        SpeedFactor=MotorController?.UpdateSpeedFactor(SpeedFactor.Value+0.1);
         Logger?.LogInformation("Car Faster");
     }
 
 
     void OnCarStop()
     {
+        MotorController?.Stop();
         Logger?.LogInformation("Car Stop");
     }
 }
