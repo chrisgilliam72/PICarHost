@@ -62,6 +62,14 @@ namespace PanTiltHatLib
             _vAngle=70;
             _logger.LogInformation($"Reset request: H-Angle:{_hAngle}, V-Angle:{_vAngle}");
         }
+        public void MoveTo(int hPos, int vPos)
+        {
+            _PCA9685.SetRotationAngle(1, hPos);
+            _PCA9685.SetRotationAngle(0, vPos);
+            _hAngle = hPos;
+            _vAngle = vPos;
+            _logger.LogInformation($"MoveTo request: H-Angle:{_hAngle}, V-Angle:{_vAngle}");
+        }
 
         public int HPos(double pos)
         {

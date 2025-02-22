@@ -8,6 +8,7 @@ namespace PanTiltHatLib
         int Left();
         int Right();
         void Reset();
+        void MoveTo(int hPos, int vPos);
         int CurrentHPosition();
         int CurrentVPosition();
         bool Init(int busAddress, int Frequency);
