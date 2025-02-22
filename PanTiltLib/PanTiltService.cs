@@ -168,6 +168,41 @@ namespace PanTiltHatLib
             return _hAngle;
         }
 
+        public int Left(int angle)
+        {
+            _logger.LogInformation($"Custom left request {angle}");
+            if (_hAngle - angle >= MINHPOS)
+            {
+                _PCA9685.SetRotationAngle(1, _hAngle - angle);
+                _hAngle = _hAngle - angle;
+            }
+            else
+            {
+                _PCA9685.SetRotationAngle(1, MINHPOS);
+                _hAngle = MINHPOS;
+            }
+            _logger.LogInformation($"H-Angle:{_hAngle}");
+            return _hAngle;
+        }
+
+        public int Right(int angle)
+        {
+            _logger.LogInformation($"Custom right request {angle}");
+            if (_hAngle + angle <= MAXHPOS)
+            {
+                _PCA9685.SetRotationAngle(1, _hAngle + angle);
+                _hAngle = _hAngle + angle;
+            }
+            else
+            {
+                _PCA9685.SetRotationAngle(1, MAXHPOS);
+                _hAngle = MAXHPOS;
+
+            }
+            _logger.LogInformation($"H-Angle:{_hAngle}");
+            return _hAngle;
+        }
+
         public int CurrentHPosition()
         {
             return _hAngle;
@@ -176,6 +211,15 @@ namespace PanTiltHatLib
         public int CurrentVPosition()
         {
             return _vAngle;
+        }
+
+        public int GetPanWidth()
+        {
+            return MAXHPOS - MINHPOS;
+        }
+        public int GetTiltHeight()
+        {
+            return MAXVPOS - MINVPOS;
         }
     }
 }
