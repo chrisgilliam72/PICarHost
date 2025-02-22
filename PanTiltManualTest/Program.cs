@@ -14,9 +14,7 @@ var panTiltService= host.Services.GetService<IPanTiltService>();
 if (panTiltService!=null)
 {
     panTiltService.Init(0x40,60);
-    panTiltService.Reset();
-    panTiltService.VPos(0.75);
-    panTiltService.HPos(0.75);
+    panTiltService.MoveTo(100,66);
     bool keeprunning=true;
     Console.WriteLine("Waiting for keypress");
     while (keeprunning)
