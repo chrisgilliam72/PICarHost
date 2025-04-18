@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Iot.Device.Bindings" Version="3.2.0" />
+    <PackageReference Include="OpenCvSharp4" Version="4.10.0.20241107" />
+    <PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20241107" />
   </ItemGroup>
 
 </Project>

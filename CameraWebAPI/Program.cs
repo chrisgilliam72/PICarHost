@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<ICamera, LibCamera>();
+builder.Services.AddSingleton<ICamera, OpenCVCamera>();
 builder.Services.AddLogging(logging =>
 {
     logging.ClearProviders();
