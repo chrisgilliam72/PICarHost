@@ -18,36 +18,35 @@ partial class CarClient
     public ICamera? Camera {get;set;}
     [Inject]
     IMotorController? MotorController  {get;set;}
-    private Timer _distanceTimer;
-    private Timer __imageTimer;
+    private Timer _distanceTimer  =null !;
+    private Timer __imageTimer =null!;
     private bool _isImagerRunning = false;
     private bool _isDistanceSensorRunning = false;
-    private string Distance {get;set;}
+    private string Distance {get;set;} = "";
     private double LastDistance {get;set;}
-     private byte[] imageData;
-    private double? SpeedFactor {get;set;}=0.5;
-    protected override async Task OnInitializedAsync()
+     private byte[] imageData = Array.Empty<byte>();
+    private double SpeedFactor {get;set;}=0.5;
+    protected override void OnInitialized()
     {
-
-    }
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            if (PanTiltService!=null)
+         if (PanTiltService!=null)
                 PanTiltService.Init(0x40,50);
-            if (UltraborgAPI!=null)         
-                UltraborgAPI.Setup();   
+            // if (UltraborgAPI!=null)         
+            //     UltraborgAPI.Setup();   
             if (Camera!=null)
                 Camera.StartCapture();
-            if (MotorController!=null)    
-            {
-                MotorController.Init(7,1,21,20);
-                SpeedFactor=MotorController.UpdateSpeedFactor(0.5);
-            }      
+            // if (MotorController!=null)    
+            // {
+            //     MotorController.Init(7,1,21,20);
+            //     SpeedFactor=MotorController.UpdateSpeedFactor(0.5);
+            // }      
 
             LastDistance=0.0;
-            PollDistance();
+    }
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {           
+            // PollDistance();
             PollImages();  
         }
       
@@ -60,14 +59,14 @@ partial class CarClient
             _isImagerRunning = true;
             __imageTimer = new Timer(async _ =>
             {
-                await InvokeAsync( async () =>
+                await InvokeAsync(  () =>
                 {
-                    if (Camera.HasImages())
+                    if (Camera is not null && Camera.HasImages())
                     {
                         var tmpData=Camera.GetImage();
                         if (tmpData!=null)
                         {
-                            Logger.LogDebug($"Image Data: {tmpData.Length}");
+                            Logger?.LogDebug($"Image Data: {tmpData.Length}");
                             imageData = tmpData;
                             StateHasChanged(); // Update the UI if needed
                         }
@@ -86,7 +85,7 @@ partial class CarClient
             _isDistanceSensorRunning = true;
             _distanceTimer = new Timer(async _ =>
             {
-                await InvokeAsync( async () =>
+                await InvokeAsync(  () =>
                 {
                     var ubDistance =UltraborgAPI?.GetDistance(1);
                     if (ubDistance.HasValue && Math.Abs(LastDistance-ubDistance.Value)>0.5)
@@ -151,14 +150,21 @@ partial class CarClient
 
     void OnCarSlower()
     {
-        SpeedFactor=MotorController?.UpdateSpeedFactor(SpeedFactor.Value-0.1);
-        Logger?.LogInformation("Car Slower");
+        if (MotorController is not null)
+        {
+            SpeedFactor=MotorController.UpdateSpeedFactor(SpeedFactor-0.1);
+            Logger?.LogInformation("Car Slower");
+        }
+
     }
 
     void OnCarFaster()
     {
-        SpeedFactor=MotorController?.UpdateSpeedFactor(SpeedFactor.Value+0.1);
-        Logger?.LogInformation("Car Faster");
+        if (MotorController is not null)
+        {
+            SpeedFactor=MotorController.UpdateSpeedFactor(SpeedFactor+0.1);
+            Logger?.LogInformation("Car Faster");
+        }        
     }
 
 

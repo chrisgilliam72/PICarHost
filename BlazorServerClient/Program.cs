@@ -17,7 +17,7 @@ builder.Services.AddLogging(logging =>
 });
 builder.Services.AddSingleton<IPanTiltService,PanTiltService>(); 
 builder.Services.AddSingleton<IUltraborgAPI,UltraborgAPI>();
-builder.Services.AddSingleton<ICamera, LibCamera>();
+builder.Services.AddSingleton<ICamera, OpenCVCamera>();
 builder.Services.AddSingleton<IMotorController,L298NMotorProcessor>(); 
 var app = builder.Build();
 

@@ -1,5 +1,6 @@
 using OpenCvSharp;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace CameraLibrary;
 
@@ -8,7 +9,6 @@ public class OpenCVCamera : ICamera, IDisposable
     private readonly ILogger<OpenCVCamera> _logger;
     private VideoCapture _capture;
     private Mat? _frame=null!;
-    private MemoryStream? _jpegStream = null!;
     private bool _isCapturing=false;
     private Task? _captureTask=null!;
     private CancellationTokenSource? _cancellationTokenSource=null!;
@@ -19,7 +19,7 @@ public class OpenCVCamera : ICamera, IDisposable
     {
         _logger = logger;
         _frame = new Mat();
-        _capture = new VideoCapture("libcamerasrc ! video/x-raw,width=640,height=480 ! videoconvert ! appsink", VideoCaptureAPIs.GSTREAMER);
+        _capture = new VideoCapture("libcamerasrc awb-mode=fluorescent ! video/x-raw,width=1280,height=720 ! videoconvert !  appsink", VideoCaptureAPIs.GSTREAMER);
 
     }
 
@@ -56,14 +56,13 @@ public class OpenCVCamera : ICamera, IDisposable
         _isCapturing = false;
     }
 
-    private void CaptureLoop(CancellationToken token)
+    private async Task CaptureLoop(CancellationToken token)
     {
         while (!token.IsCancellationRequested)
         {
             if (_frame!=null && _capture.Read(_frame) && !_frame.Empty())
             {
                 Cv2.Flip(_frame, _frame, FlipMode.X); // Flip vertically
-                _jpegStream = new MemoryStream();
                 Cv2.ImEncode(".jpg", _frame, out var buffer);
                 lock (_lock)
                 {
@@ -71,7 +70,7 @@ public class OpenCVCamera : ICamera, IDisposable
                 }
             }
 
-            Thread.Sleep(33); // ~30 FPS
+            await Task.Delay(33,token);
         }
     }
 
@@ -88,7 +87,7 @@ public class OpenCVCamera : ICamera, IDisposable
         lock (_lock)
         {
             if (_latestImage!=null)
-                return _latestImage.ToArray();
+                return _latestImage;
             return  Array.Empty<byte>();               
         }
     }
@@ -97,7 +96,6 @@ public class OpenCVCamera : ICamera, IDisposable
     {
         _capture?.Dispose();
         _frame?.Dispose();
-        _jpegStream?.Dispose();
         _cancellationTokenSource?.Dispose();
     }
 }
