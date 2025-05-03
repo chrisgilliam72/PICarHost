@@ -19,7 +19,8 @@ public class OpenCVCamera : ICamera, IDisposable
     {
         _logger = logger;
         _frame = new Mat();
-        _capture = new VideoCapture("libcamerasrc awb-mode=fluorescent ! video/x-raw,width=1280,height=720 ! videoconvert !  appsink", VideoCaptureAPIs.GSTREAMER);
+
+        _capture = new VideoCapture("libcamerasrc awb-mode=fluorescent ! video/x-raw,width=1280,height=720 ! videoconvert ! appsink", VideoCaptureAPIs.GSTREAMER);
 
     }
 
