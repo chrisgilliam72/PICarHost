@@ -8,19 +8,19 @@ public class OpenCVCamera : ICamera, IDisposable
 {
     private readonly ILogger<OpenCVCamera> _logger;
     private VideoCapture _capture;
-    private Mat? _frame=null!;
-    private bool _isCapturing=false;
-    private Task? _captureTask=null!;
-    private CancellationTokenSource? _cancellationTokenSource=null!;
+    private Mat? _frame = null!;
+    private bool _isCapturing = false;
+    private Task? _captureTask = null!;
+    private CancellationTokenSource? _cancellationTokenSource = null!;
     private readonly object _lock = new();
-    private byte[] _latestImage=null!;
+    private byte[] _latestImage = null!;
 
     public OpenCVCamera(ILogger<OpenCVCamera> logger)
     {
         _logger = logger;
         _frame = new Mat();
-
-        _capture = new VideoCapture("libcamerasrc awb-mode=fluorescent ! video/x-raw,width=1280,height=720 ! videoconvert ! appsink", VideoCaptureAPIs.GSTREAMER);
+        //_capture = new VideoCapture("libcamerasrc awb-mode=fluorescent ! video/x-raw,width=1280,height=720 ! videoconvert ! appsink", VideoCaptureAPIs.GSTREAMER);
+        _capture = new VideoCapture("libcamerasrc ! video/x-raw,width=1280,height=720 ! videobalance brightness=0.0 ! videoconvert ! appsink", VideoCaptureAPIs.GSTREAMER);
 
     }
 
@@ -51,17 +51,39 @@ public class OpenCVCamera : ICamera, IDisposable
             return;
 
         _logger.LogInformation("Stopping OpenCV capture...");
+
+        // Cancel the task gracefully
         _cancellationTokenSource?.Cancel();
-        _captureTask?.Wait();
-        _capture.Release();
-        _isCapturing = false;
+
+        // Wait for the capture task to finish. Use a try-catch to handle potential issues during Wait().
+        try
+        {
+            _captureTask?.Wait(); // Wait for the capture task to finish
+        }
+        catch (AggregateException ex)
+        {
+            // Handle specific exceptions if needed (e.g., TaskCanceledException)
+            _logger.LogError($"Error stopping capture: {ex.Message}");
+        }
+        finally
+        {
+            // Release the capture device after the task completes
+            _capture.Release();
+            _isCapturing = false;
+
+            // Dispose resources
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
+        }
+
+        _logger.LogInformation("OpenCV capture stopped.");
     }
 
     private async Task CaptureLoop(CancellationToken token)
     {
         while (!token.IsCancellationRequested)
         {
-            if (_frame!=null && _capture.Read(_frame) && !_frame.Empty())
+            if (_frame != null && _capture.Read(_frame) && !_frame.Empty())
             {
                 Cv2.Flip(_frame, _frame, FlipMode.X); // Flip vertically
                 Cv2.ImEncode(".jpg", _frame, out var buffer);
@@ -71,7 +93,16 @@ public class OpenCVCamera : ICamera, IDisposable
                 }
             }
 
-            await Task.Delay(33,token);
+            // If cancellation is requested, exit the loop gracefully
+            try
+            {
+                await Task.Delay(50, token);
+            }
+            catch (TaskCanceledException)
+            {
+                // Ignore the exception if the task is canceled
+                break;
+            }
         }
     }
 
@@ -87,9 +118,9 @@ public class OpenCVCamera : ICamera, IDisposable
     {
         lock (_lock)
         {
-            if (_latestImage!=null)
+            if (_latestImage != null)
                 return _latestImage;
-            return  Array.Empty<byte>();               
+            return Array.Empty<byte>();
         }
     }
 

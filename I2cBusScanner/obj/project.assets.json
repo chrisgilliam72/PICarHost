@@ -1085,11 +1085,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\pi4\\Dev\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
+      "projectUniqueName": "\\\\pi4\\dev\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
       "projectName": "I2cBusScanner",
-      "projectPath": "\\\\pi4\\Dev\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
+      "projectPath": "\\\\pi4\\dev\\PICarHost\\I2cBusScanner\\I2cBusScanner.csproj",
       "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-      "outputPath": "\\\\pi4\\Dev\\PICarHost\\I2cBusScanner\\obj\\",
+      "outputPath": "\\\\pi4\\dev\\PICarHost\\I2cBusScanner\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -1163,6 +1163,12 @@
       "level": "Warning",
       "warningLevel": 1,
       "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://nuget.telerik.com/v3/index.json."
+    },
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://devops.racellular.com/DefaultCollection/_packaging/GeneralPackageFeed/nuget/v3/index.json."
     }
   ]
 }
