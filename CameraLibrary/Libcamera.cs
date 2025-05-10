@@ -86,4 +86,10 @@ public class LibCamera : ICamera
         _isCapturing = false;
         _logger.LogInformation("Capturing stopped");
     }
+
+    public bool ImageSignificantlyChanged(int pixelChangeThreshold)
+    {
+        return true;
+    }
+
 }

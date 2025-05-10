@@ -9,6 +9,7 @@ public class OpenCVCamera : ICamera, IDisposable
     private readonly ILogger<OpenCVCamera> _logger;
     private VideoCapture _capture;
     private Mat? _frame = null!;
+    private Mat? _prevFrame =null!;
     private bool _isCapturing = false;
     private Task? _captureTask = null!;
     private CancellationTokenSource? _cancellationTokenSource = null!;
@@ -83,9 +84,20 @@ public class OpenCVCamera : ICamera, IDisposable
     {
         while (!token.IsCancellationRequested)
         {
-            if (_frame != null && _capture.Read(_frame) && !_frame.Empty())
+            using var newFrame = new Mat();
+            if (_capture.Read(newFrame) && !newFrame.Empty())
             {
-                Cv2.Flip(_frame, _frame, FlipMode.X); // Flip vertically
+                Cv2.Flip(newFrame, newFrame, FlipMode.X); // Flip vertically
+
+                lock(_lock)
+                {
+                    // Store previous frame as a deep clone
+                    _prevFrame?.Dispose();
+                    _prevFrame = _frame?.Clone();  // Clone the previous frame
+                    _frame?.Dispose();
+                    _frame = newFrame.Clone();     // Clone the new frame to keep as current
+                }
+                // Optionally encode and store image
                 Cv2.ImEncode(".jpg", _frame, out var buffer);
                 lock (_lock)
                 {
@@ -129,5 +141,30 @@ public class OpenCVCamera : ICamera, IDisposable
         _capture?.Dispose();
         _frame?.Dispose();
         _cancellationTokenSource?.Dispose();
+    }
+
+    public bool ImageSignificantlyChanged(int pixelChangeThreshold)
+    {
+        lock(_lock)
+        {
+            if (_frame is null && _prevFrame is null)
+                return false;
+
+            if (_frame is null || _prevFrame is null)     
+                return true;
+
+            if (_frame.Size() != _prevFrame.Size())
+                return true; // Resolution changed = definitely different
+
+            using var diff = new Mat();
+            Cv2.Absdiff(_frame, _prevFrame, diff);
+            Cv2.CvtColor(diff, diff, ColorConversionCodes.BGR2GRAY);
+            Cv2.Threshold(diff, diff, 25, 255, ThresholdTypes.Binary); // 25 = small motion threshold
+            int changedPixels = Cv2.CountNonZero(diff);
+            if (changedPixels > pixelChangeThreshold)
+                _logger.LogDebug($"Changed Pixel Value : {changedPixels}");
+            return changedPixels > pixelChangeThreshold;
+        }
+
     }
 }

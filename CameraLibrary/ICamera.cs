@@ -14,5 +14,6 @@ public interface ICamera
     public void StopCapture();
     public byte[] GetImage();
     public bool HasImages();
+    public bool ImageSignificantlyChanged(int pixelChangeThreshold = 1000);
 
 }
