@@ -1,0 +1,19 @@
+﻿
+<div class="image-container">
+    <div id="container-fluid" tabindex=0 @onkeydown="OnKeyDown">
+        <img class="img-fluid" src="@($"data:image/jpeg;base64,{Convert.ToBase64String(imageData)}")"
+             alt="Dynamic Image" />
+        <button class="control-button up" id="btnUp" @onclick="() => OnCameraUp()">
+            <img src="./images/UpArrow.png" class="buttonImg" />
+        </button>
+        <button class="control-button left" id='btnLeft' @onclick="() => OnCameraLeft()">
+            <img src="./images/Leftarrow.png" class="buttonImg" />
+        </button>
+        <button class="control-button right" id='btnRight' @onclick="() => OnCameraRight()">
+            <img src="./images/RightArrow.png" class="buttonImg" />
+        </button>
+        <button class="control-button down" id='btnDown' @onclick="() => OnCameraDown()">
+            <img src="./images/DownArrow.png" class="buttonImg" />
+        </button>
+    </div>
+</div>

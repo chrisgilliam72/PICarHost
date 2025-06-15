@@ -1,0 +1,53 @@
+﻿img.buttonImg {
+    width: 50%; /* Default: full width */
+    height: auto;
+}
+
+@media (max-width: 500px) {
+    img.buttonImg {
+        width: 25%;
+        height: auto;
+    }
+}
+
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.control-button {
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+    .control-button.up {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .control-button.down {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .control-button.left {
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .control-button.right {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }

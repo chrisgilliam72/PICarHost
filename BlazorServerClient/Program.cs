@@ -1,10 +1,11 @@
 using BlazorServerClient.Data;
+using BlazorServerClient.Services;
+using CameraLibrary;
+using L298NLibrary;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using PanTiltHatLib;
 using Ultraborg; 
-using CameraLibrary;
-using L298NLibrary;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,7 +19,8 @@ builder.Services.AddLogging(logging =>
 builder.Services.AddSingleton<IPanTiltService,PanTiltService>(); 
 builder.Services.AddSingleton<IUltraborgAPI,UltraborgAPI>();
 builder.Services.AddSingleton<ICamera, OpenCVCamera>();
-builder.Services.AddSingleton<IMotorController,L298NMotorProcessor>(); 
+builder.Services.AddSingleton<IMotorController,L298NMotorProcessor>();
+builder.Services.AddSingleton<ICameraService, CameraSerice>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
