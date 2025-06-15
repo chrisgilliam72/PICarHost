@@ -21,8 +21,6 @@ public partial class Camera : IDisposable
 
     private byte[] imageData = Array.Empty<byte>();
 
-    private double lastY = 0;
-    private double lastX = 0;
     protected override void OnInitialized()
     {
         if (PanTiltService != null)
