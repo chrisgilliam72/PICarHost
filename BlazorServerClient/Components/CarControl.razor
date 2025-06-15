@@ -1,0 +1,54 @@
+    <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button id="btnUp" @onmousedown="()=>OnCarForward()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/UpArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+            </div>
+
+    <div class="row justify-content-evenly my-4">
+                <div class="col-auto">
+                    <button id='btnLeft' @onmousedown="()=>OnCarLeft()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/Leftarrow.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button id='btnLeft' @onmousedown="()=>OnCarStop()">
+                        <img src="./images/Stop.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button id='btnRight' @onmousedown="()=>OnCarRight()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/RightArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+            </div>
+
+    <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button id='btnDown' @onmousedown="()=>OnCarBack()" @onmouseup="()=>OnCarStop()"
+                            @onblur="()=>OnCarStop()" @onmouseleave="()=>OnCarStop()">
+                        <img src="./images/DownArrow.png" class="buttonImg" />
+                    </button>
+                </div>
+            </div>
+
+
+    <div class="row justify-content-center mt-5">
+                <div class="col-auto">
+                    <button id='btnFaster' @onclick="() => OnCarFaster()">
+                        <img src="./images/plus.png" class="buttonImg" />
+                    </button>
+                </div>
+                <div class="col-auto">
+                    <button id='btnSlower' @onclick="()=>OnCarSlower()">
+                        <img src="./images/minus.png" class="buttonImg" />
+                    </button>
+                </div>
+
+            </div>
+
+            
