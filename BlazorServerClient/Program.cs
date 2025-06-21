@@ -21,6 +21,7 @@ builder.Services.AddSingleton<IUltraborgAPI,UltraborgAPI>();
 builder.Services.AddSingleton<ICamera, OpenCVCamera>();
 builder.Services.AddSingleton<IMotorController,L298NMotorProcessor>();
 builder.Services.AddSingleton<ICameraService, CameraSerice>();
+builder.Services.AddSingleton<ICarMotorControlServiceFactory, CarMotorControlServiceFactory>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

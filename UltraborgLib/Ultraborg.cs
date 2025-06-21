@@ -13,7 +13,7 @@ namespace Ultraborg.Library
 {
     public class Ultraborg
     {
-        private I2cDevice ubI2C { get; set; }
+
         const int I2C_MAX_LEN = 4;
         const double USM_US_TO_MM = 0.171500;
         const byte I2C_ID_SERVO_USM = 0x36;
@@ -65,9 +65,10 @@ namespace Ultraborg.Library
         const int COMMAND_GET_FILTER_USM3 = 43;    // Get the filtered time measured by ultrasonic #3 in us (0 for no detection)
         const int COMMAND_GET_FILTER_USM4 = 44;    //Get the filtered time measured by ultrasonic #4 in us (0 for no detection)
 
-
+        private  I2cDevice? ubI2C { get; set; }
         public Ultraborg()
         {
+
         }
 
 
@@ -118,7 +119,7 @@ namespace Ultraborg.Library
             byte byteValHigh = (byte)(commandValue >> 8 & 0xFF);
 
             byte[] sendBytes = new byte[] { command, byteValHigh, byteValLow };
-            ubI2C.Write(sendBytes);
+            ubI2C?.Write(sendBytes);
         }
 
         private int GetIntegerValue(byte commandValue)
@@ -129,9 +130,9 @@ namespace Ultraborg.Library
                 byte[] recvBytes = new byte[I2C_MAX_LEN];
                 byte[] sendBytes = new byte[] { commandValue };
 
-                ubI2C.Write(sendBytes);
+                ubI2C?.Write(sendBytes);
                 mre.WaitOne(TimeSpan.FromMilliseconds(100));
-                ubI2C.Read(recvBytes);
+                ubI2C?.Read(recvBytes);
 
                 int minVal = ((int)recvBytes[1] << 8) + (int)recvBytes[2];
                 return minVal;
@@ -542,7 +543,7 @@ namespace Ultraborg.Library
 
                 try
                 {
-                    ubI2C.Write(sendBytes);
+                    ubI2C?.Write(sendBytes);
                 }
                 catch 
                 {
@@ -553,7 +554,7 @@ namespace Ultraborg.Library
                 try
                 {
                     mre.WaitOne(1);
-                    ubI2C.Read(recvBytes);
+                    ubI2C?.Read(recvBytes);
                     if (recvBytes[0]==command)
                     {
                         int time_us = ((int)recvBytes[1] << 8) + (int)recvBytes[2];

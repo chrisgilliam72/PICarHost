@@ -18,7 +18,7 @@ namespace Ultraborg.Library.Servo
 
         private double ServoNeutral { get; set; }
 
-        private Ultraborg Ultraborg { get; set; }
+        private Ultraborg Ultraborg { get; set; } = new Ultraborg();
 
         private double _position { get; set; }
 

@@ -6,15 +6,16 @@ namespace BlazorServerClient.Components;
 public partial class CarControl
 {
     [Inject]
-    IMotorController? MotorController { get; set; }
+    ICarMotorControlServiceFactory? MotorControllerFactory { get; set; }
     [Inject]
     public ILogger<CarControl>? Logger { get; set; }
-    private double SpeedFactor {get;set;}=0.5;
+    IMotorController? MotorController { get; set; }
+    private double SpeedFactor { get; set; } = 0.5;
     protected override void OnInitialized()
     {
-        if (MotorController!=null)    
+        if (MotorControllerFactory!=null)    
         {
-            MotorController.Init(7,1,21,20);
+            MotorController = MotorControllerFactory.CreateMotorController(7,1,21,20);
             SpeedFactor=MotorController.UpdateSpeedFactor(0.5);
         }   
     }
