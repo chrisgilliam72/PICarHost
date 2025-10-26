@@ -46,13 +46,12 @@ public partial class DistanceControl
                     if (ubDistance.HasValue && Math.Abs(LastDistance - ubDistance.Value) > 0.5)
                     {
                         Distance = string.Format("{0:F1}", ubDistance);
+                        StateHasChanged(); // Update the UI if needed
                     }
-
-
-                    StateHasChanged(); // Update the UI if needed
+      
                 });
 
-            }, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100)); // Call every 10 seconds
+            }, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(250)); // Call every 10 seconds
         }
     }
 }

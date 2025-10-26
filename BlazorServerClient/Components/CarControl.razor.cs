@@ -15,7 +15,7 @@ public partial class CarControl
     {
         if (MotorControllerFactory!=null)    
         {
-            MotorController = MotorControllerFactory.CreateMotorController(7,1,21,20);
+            MotorController = MotorControllerFactory.CreateMotorController(1,7,20,21);
             SpeedFactor=MotorController.UpdateSpeedFactor(0.5);
         }   
     }
