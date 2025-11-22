@@ -31,7 +31,7 @@ public partial class DistanceControl
         Distance = "";
         if (UltraborgAPI != null)
             UltraborgAPI.Setup();
-        PollDistance();
+        //PollDistance();
     }
     private void PollDistance()
     {

@@ -33,8 +33,6 @@ public partial class Camera : IDisposable
         }
 
 
-
-
     }
     protected override void OnAfterRender(bool firstRender)
     {

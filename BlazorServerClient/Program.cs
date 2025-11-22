@@ -5,7 +5,8 @@ using L298NLibrary;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using PanTiltHatLib;
-using Ultraborg; 
+using Ultraborg;
+using BatteryLevelReporting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +17,7 @@ builder.Services.AddLogging(logging =>
     logging.ClearProviders();
     logging.AddConsole();
 });
+builder.Services.AddBatteryServiceReporting();
 builder.Services.AddSingleton<IPanTiltService,PanTiltService>(); 
 builder.Services.AddSingleton<IUltraborgAPI,UltraborgAPI>();
 builder.Services.AddSingleton<ICamera, OpenCVCamera>();

@@ -11,6 +11,7 @@
     <ProjectReference Include="..\UltraborgLib\UltraborgLib.csproj" />
     <ProjectReference Include="..\CameraLibrary\CameraLibrary.csproj" />
     <ProjectReference Include="..\L298NLibrary\L298NLibrary.csproj" />
+    <ProjectReference Include="..\BatteryLevelReporting\BatteryLevelReporting.csproj" />
   </ItemGroup>
 
 </Project>
